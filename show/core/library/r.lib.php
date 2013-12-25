@@ -23,7 +23,7 @@ Class r{
        $this->post = (object)$this->post;
     }
     /*
-     * 报告安全
+     * 鎶ュ憡瀹夊叏
      */
     public function _safe($data)
     {

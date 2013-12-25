@@ -4,15 +4,15 @@ Class file{
     {
         try {
             if (!$fp = fopen($file, 'w')) {
-                    throw new Exception('不能打开文件');
+                    throw new Exception('涓嶈兘鎵撳紑鏂囦欢');
             }
             if (!fwrite($fp, $data)) {
-                    throw new Exception('不能写入文件');
+                    throw new Exception('涓嶈兘鍐欏叆鏂囦欢');
             }
             if (!fclose($fp)) {
-                    throw new Exception('不能关闭文件');
+                    throw new Exception('涓嶈兘鍏抽棴鏂囦欢');
             }
-            return '写入成功';
+            return '鍐欏叆鎴愬姛';
             } catch (Exception $e) {
                     return $e->getMessage();
             }

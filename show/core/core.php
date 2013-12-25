@@ -3,22 +3,25 @@
  * copry right PHPBODY
  */
 
-//�����ļ��ļ���
+//站群相关
+define("HOST",$_SERVER['HTTP_HOST']);
+
+//配置文件文件夹
 define("SHOWCONFIG",PHPBODY."/show/config");
 
-//ģ���ļ�Ŀ¼
+//模板文件目录
 define("SHOWTEMPLATE",PHPBODY."/show/display");
 
-//���ļ�
+//库文件
 define("SHOWLIBRARY",PHPBODY."/show/core/library");
 
-//�����ļ� ��������
+//函数文件 几个工具
 define("SHOWFUNCTION",PHPBODY."/show/core/function");
 
-//���Ʋ�
+//控制层
 define("SHOWCONTROL",PHPBODY."/show/control");
 
-//ģ�Ͳ�
+//模型层
 define("SHOWMODEL",PHPBODY."/show/model");
 
 include SHOWCONFIG."/database.php";

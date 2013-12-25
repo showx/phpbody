@@ -1,6 +1,6 @@
 <?php
 /*
- * Ä£°åÅäÖÃ
+ * æ¨¡æ¿é…ç½®
  */
 
 define("templatelib",PHPBODY."/show/display/libs");

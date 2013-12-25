@@ -21,7 +21,7 @@ Class tpl{
     }
     
     /*
-     * µ¥Àı´´½¨
+     * å•ä¾‹åˆ›å»º
      */
     public static function getInstance(){
         if(!(self::$_instance instanceof self)){
@@ -31,14 +31,14 @@ Class tpl{
     }
     
     /*
-     * ¸³Öµ
+     * èµ‹å€¼
      */
     public function a($key,$val){
         self::init();
         $this->tpl->assign("{$key}",$val);
     }
     /*
-     * äÖÈ¾
+     * æ¸²æŸ“
      */
     public function d($name){
         self::init();

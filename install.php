@@ -60,5 +60,5 @@ foreach($data as $sql)
     }
 }
 file_put_contents(PHPBODY."/install.lok", "ok");
-echo "安装完成<a href='index.php'>返回首页</a>&nbsp;<a href='admin.php'>进入后台</a>";
+echo "瀹夎瀹屾垚<a href='index.php'>杩斿洖棣栭〉</a>&nbsp;<a href='admin.php'>杩涘叆鍚庡彴</a>";
 ?>

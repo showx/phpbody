@@ -1,6 +1,6 @@
 <?php
 /*
- * ×Ô¶¯¼ÓÔØÀà
+ * è‡ªåŠ¨åŠ è½½ç±»
  */
 function __autoload($class_name) {
     if(file_exists(SHOWLIBRARY."/".$class_name.".lib.php"))

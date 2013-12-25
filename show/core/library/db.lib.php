@@ -9,7 +9,7 @@ Class db{
     private $xdata;
     private static $_instance;
     /*
-     * µ÷ÓÃÊ±ºò½¨Á¢
+     * è°ƒç”¨æ—¶å€™å»ºç«‹
      */
     function __construct()
     {
@@ -17,7 +17,7 @@ Class db{
     }
     
     /*
-     * µ¥Àı´´½¨
+     * å•ä¾‹åˆ›å»º
      */
     public static function i(){  //getInstance
         if(!(self::$_instance instanceof self)){
@@ -27,16 +27,16 @@ Class db{
     }
     
     /*
-     * ½¨Á¢Á¬½Ó
+     * å»ºç«‹è¿æ¥
      */
     function conn()
     {
-        $this->link = mysql_connect($GLOBALS['db']['host'],$GLOBALS['db']['user'],$GLOBALS['db']['pass']) or die('Çë¼ì²éÊı¾İ¿âÅäÖÃ');
-        mysql_select_db($GLOBALS['db']['databases'],$this->link) or die('Êı¾İ¿âNo Found');
+        $this->link = mysql_connect($GLOBALS['db']['host'],$GLOBALS['db']['user'],$GLOBALS['db']['pass']) or die('è¯·æ£€æŸ¥æ•°æ®åº“é…ç½®');
+        mysql_select_db($GLOBALS['db']['databases'],$this->link) or die('æ•°æ®åº“No Found');
     }
     /*
-     * ½¨Á¢²éÑ¯
-     * Óï¾äÊ§°Ü£¬’³ö
+     * å»ºç«‹æŸ¥è¯¢
+     * è¯­å¥å¤±è´¥ï¼Œæ‹‹å‡º
      */
     public function query($sql)
     {
@@ -50,7 +50,7 @@ Class db{
         return mysql_affected_rows();
     }
     /*
-     * °²È«´¦Àí
+     * å®‰å…¨å¤„ç†
      */
     function safe($sql)
     {
@@ -58,7 +58,7 @@ Class db{
         return $sql;
     }
     /*
-     * »ñÈ¡Ò»ÌõĞÅÏ¢
+     * è·å–ä¸€æ¡ä¿¡æ¯
      */
     function get_one($sql)
     {
@@ -70,7 +70,7 @@ Class db{
         return $this->xdata;
     }
     /*
-     * »ñÈ¡È«²¿ĞÅÏ¢
+     * è·å–å…¨éƒ¨ä¿¡æ¯
      */
     function get_all($sql)
     {
