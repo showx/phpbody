@@ -1,5 +1,5 @@
 <?php
-Class lists{
+Class lists extends base{
     public function index()
     {
         

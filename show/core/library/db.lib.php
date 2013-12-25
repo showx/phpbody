@@ -45,9 +45,29 @@ Class db{
         $d = mysql_query($sql) or die("Invalid query: " .$sql.mysql_error());
         return $d;
     }
+    /**
+     * 影响的条数
+     * @return [type] [description]
+     */
     public function affected_rows()
     {
         return mysql_affected_rows();
+    }
+    /**
+     * 获取最后插入的ID
+     * @return [type] [description]
+     */
+    public function getinsertid()
+    {
+        $this->id=mysql_insert_id($this->link);
+    }
+    /**
+     * 释放sql
+     * @return [type] [description]
+     */
+    public function free($sql)
+    {
+        mysql_free_result($sql);
     }
     /*
      * 安全处理

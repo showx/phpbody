@@ -1,5 +1,5 @@
 <?php
-Class content{
+Class content extends base{
     public function index()
     {
         

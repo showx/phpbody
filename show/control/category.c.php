@@ -1,5 +1,6 @@
 <?php
-Class category{
+
+Class category extends base{
     public function index()
     {
         

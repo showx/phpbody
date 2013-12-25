@@ -3,6 +3,8 @@
  * copry right PHPBODY
  */
 
+define("BODY",1);
+
 //站群相关
 define("HOST",$_SERVER['HTTP_HOST']);
 
