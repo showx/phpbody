@@ -1,6 +1,12 @@
 <?php
 Class http{
-    function curl($url,$param)
+    /**
+     * post 
+     * @param  [type] $url   [description]
+     * @param  [type] $param [description]
+     * @return [type]        [description]
+     */
+    function pcurl($url,$param)
     {
         $param = http_build_query($param);
         $curl = curl_init($url);   
@@ -14,7 +20,27 @@ Class http{
         curl_close($curl);
         return $r;
     }
-
+    /**
+     * 普通下载
+     * @param  [type] $url [description]
+     * @return [type]      [description]
+     */
+    function url_fetch($url) {
+        $contents='';
+        if (function_exists('curl_init')) {
+            $ch=curl_init();
+            curl_setopt($ch,CURLOPT_TIMEOUT,10);
+            curl_setopt($ch,CURLOPT_URL,$url);
+            curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+            curl_setopt($ch,CURLOPT_CONNECTTIMEOUT,10);
+            curl_setopt($ch,CURLOPT_FOLLOWLOCATION,1);
+            $contents=trim(curl_exec($ch));
+            curl_close($ch);
+            return $contents;
+        }else{
+            file_get_contents($url);
+        }
+    }
     function check_url ($url) { 
             $url_pieces = parse_url ($url);
             $path = (isset($url_pieces['path'])) ? $url_pieces['path'] :  '/'; 
@@ -27,7 +53,6 @@ Class http{
                     $data = fgets ($fp, 128); 
                     fclose($fp); 
                     list($response, $code) = explode (' ', $data); 
-
                     if ($code == 200) {
                             return array($code, 'good');
                     } else {
