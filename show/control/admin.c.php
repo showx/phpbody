@@ -11,9 +11,9 @@ class admin extends base{
     public function login()
     {
         global $r;
-        if($r->get->name)
+        if($r->get->name && $r->get->pass)
         {
-            echo $r->get->name;
+            
         }
         tpl::d('login.tpl');
     }

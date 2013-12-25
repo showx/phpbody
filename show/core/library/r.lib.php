@@ -1,4 +1,8 @@
 <?php
+/**
+* 路由类
+* powered by phpbody 
+*/
 Class r{
     public $get;
     public $post;
@@ -17,15 +21,15 @@ Class r{
                 $this->post[$key] = $val;
             }
         }
-       self::_safe(&$this->get);
-       self::_safe(&$this->post);
+       self::_safe($this->get);
+       self::_safe($this->post);
        $this->get = (object)$this->get;
        $this->post = (object)$this->post;
     }
     /*
      * 报告安全
      */
-    public function _safe($data)
+    public function _safe(&$data)
     {
         if(is_array($data))
         {

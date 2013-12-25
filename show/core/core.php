@@ -2,7 +2,7 @@
 /*
  * copry right PHPBODY
  */
-
+error_reporting(E_ALL);
 define("BODY",1);
 
 //站群相关
