@@ -50,6 +50,21 @@ CREATE TABLE `show_session` (
   `lastaccess` varchar(255) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `show_subsite`;
+CREATE TABLE `show_subsite` (
+  `id` int(11) default NULL auto_increment,
+  `name` varchar(255) default NULL,
+  `data` text,
+  `timestamp` varchar(255) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `show_group`;
+CREATE TABLE `show_group` (
+  `groupid` int(11) NOT NULL auto_increment,
+  `groupname` varchar(255) default NULL,
+  `xian` varchar(255) default NULL,
+  PRIMARY KEY  (`groupid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 EOF;
 $data = explode(";", $sql);
 foreach($data as $sql)
