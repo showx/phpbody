@@ -1,8 +1,11 @@
 <?php
 Class home extends base{
+
     public function index()
     {
-//        $result = db::i()->get_one("select * from show_admin");
+    	
+        indexModel::getResult();
+    	tpl::a("test","Hello World!!");
         tpl::d('index.tpl');
     }
 }

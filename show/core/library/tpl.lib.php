@@ -5,27 +5,35 @@
  */
 Class tpl{
     private $lib;
-    public static $tpl;
+    public  $tpl;
     private $data; 
     public static $_instance;
-    public function init() {
-        $this->lib = templatelib;
-        include templatelib."/Smarty.class.php";
-        $this->tpl = new Smarty;
-        $this->tpl->template_dir = template_dir;
-        $this->tpl->compile_dir = compile_dir;
-        $this->tpl->config_dir = config_dir;
-        $this->tpl->cache_dir = cache_dir;
-        $this->tpl->left_delimiter = left_delimiter;
-        $this->tpl->right_delimiter = right_delimiter;
+    public static function init() {
+        //$this->lib = templatelib;
+        self::getInstance();
     }
-    
+    /**
+    * 构建包含
+    */
+    public function __construct()
+    {
+        include templatelib."/Smarty.class.php";
+    }
+
     /*
      * 单例创建
      */
     public static function getInstance(){
         if(!(self::$_instance instanceof self)){
             self::$_instance = new self;
+
+            self::$_instance->tpl = new Smarty;
+            self::$_instance->tpl->template_dir = template_dir;
+            self::$_instance->tpl->compile_dir = compile_dir;
+            self::$_instance->tpl->config_dir = config_dir;
+            self::$_instance->tpl->cache_dir = cache_dir;
+            self::$_instance->tpl->left_delimiter = left_delimiter;
+            self::$_instance->tpl->right_delimiter = right_delimiter;
         }
         return self::$_instance;
     }
@@ -33,16 +41,16 @@ Class tpl{
     /*
      * 赋值
      */
-    public function a($key,$val){
+    public static function a($key,$val){
         self::init();
-        $this->tpl->assign("{$key}",$val);
+        self::$_instance->tpl->assign("{$key}",$val);
     }
     /*
      * 渲染
      */
-    public function d($name){
+    public static function d($name){
         self::init();
-        $this->tpl->display($name);
+        self::$_instance->tpl->display($name);
     }
     
     /*
