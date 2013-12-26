@@ -1,0 +1,8 @@
+#
+# robots.txt for phpbody
+#
+
+User-agent: *
+
+Disallow: /show/
+Disallow: /static/
