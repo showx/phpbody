@@ -13,7 +13,7 @@ class admin extends base{
         global $r;
         if($r->get->name && $r->get->pass)
         {
-            
+            $result = adminModel::getAdmin($r->get->name,$r->get->pass);
         }
         tpl::d('login.tpl');
     }

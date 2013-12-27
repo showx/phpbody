@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * 数据库驱动类
+ * Author show
+ */
 Class db{
     private $link;
     private $array;
@@ -8,6 +11,8 @@ Class db{
     private $data;
     private $xdata;
     private static $_instance;
+    private $safestring;
+    private $replacestring;
     /*
      * 调用时候建立
      */
@@ -82,19 +87,16 @@ Class db{
     /*
      * 获取一条信息
      */
-    function get_one($sql)
+    function getone($sql)
     {
         $result = $this->query($sql);
-        while($this->xdata = mysql_fetch_array($result,MYSQL_ASSOC))
-        {
-            break;
-        }
+        $this->xdata = mysql_fetch_array($result,MYSQL_ASSOC)
         return $this->xdata;
     }
     /*
      * 获取全部信息
      */
-    function get_all($sql)
+    function getall($sql)
     {
         $result = $this->query($sql);
         while($this->xdata = mysql_fetch_array($result,MYSQL_ASSOC))

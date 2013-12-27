@@ -20,9 +20,10 @@ CREATE TABLE `show_admin` (
   `password` varchar(255) default NULL,
   `type` int(11) default NULL,
   `mcrypt` varchar(255) default NULL,
+  `groupdid` int(11) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-INSERT INTO show_admin VALUES ('1', 'admin', '584efbd5d11809943039e71845b0cd7', '1', 'show');
+INSERT INTO show_admin VALUES ('1', 'admin', '584efbd5d11809943039e71845b0cd7', '1', 'show','1');
 
 DROP TABLE IF EXISTS `show_category`;
 CREATE TABLE `show_category` (
@@ -65,6 +66,7 @@ CREATE TABLE `show_group` (
   `xian` varchar(255) default NULL,
   PRIMARY KEY  (`groupid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+INSERT INTO show_group VALUES ('1', '管理组', '');
 EOF;
 $data = explode(";", $sql);
 foreach($data as $sql)

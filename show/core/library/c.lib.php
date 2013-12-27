@@ -2,6 +2,7 @@
 /**
  * cookie 方法
  * 没什么事情，不推荐使用cookie
+ * Author show
  * copyright phpbody
  */
 class c{

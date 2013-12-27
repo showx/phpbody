@@ -48,7 +48,7 @@ if(!isset($r->get->c))
         @$tmp = new $r->get->c;
     }catch(Exception $e)
     {
-        
+        echo 'no hack';exit();
     }
     $a = $r->get->a;
     $tmp->$a();
