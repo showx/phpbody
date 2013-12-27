@@ -1,6 +1,6 @@
 <?php
 Class form{
-    public function getHeader()
+    public static function getHeader()
     {
         return '<!DOCTYPE html>
 <html>

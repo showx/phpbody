@@ -11,7 +11,7 @@ Class file{
      * @param  [type] $data [description]
      * @return [type]       [description]
      */
-    function writefile($file,$data)
+    public static function writefile($file,$data)
     {
         try {
             if (!$fp = fopen($file, 'w')) {
@@ -32,7 +32,7 @@ Class file{
      * 上传文件
      * @return [type] [description]
      */
-    public function upload()
+    public static function upload()
     {
 
     }
@@ -40,7 +40,7 @@ Class file{
      * 遍历目录
      * @return [type] [description]
      */
-    public function scandir()
+    public static function scandir()
     {
 
     }
@@ -48,7 +48,7 @@ Class file{
      * 删除目录
      * @return [type] [description]
      */
-    public function deldir()
+    public static function deldir()
     {
 
     }

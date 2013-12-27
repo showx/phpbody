@@ -6,7 +6,7 @@ Class http{
      * @param  [type] $param [description]
      * @return [type]        [description]
      */
-    function pcurl($url,$param)
+    function static pcurl($url,$param)
     {
         $param = http_build_query($param);
         $curl = curl_init($url);   
@@ -25,7 +25,7 @@ Class http{
      * @param  [type] $url [description]
      * @return [type]      [description]
      */
-    function url_fetch($url) {
+    function static url_fetch($url) {
         $contents='';
         if (function_exists('curl_init')) {
             $ch=curl_init();
@@ -41,7 +41,7 @@ Class http{
             file_get_contents($url);
         }
     }
-    function check_url ($url) { 
+    function static check_url ($url) { 
             $url_pieces = parse_url ($url);
             $path = (isset($url_pieces['path'])) ? $url_pieces['path'] :  '/'; 
             $port = (isset($url_pieces['port'])) ? $url_pieces['port'] : 80; 
