@@ -1,6 +1,7 @@
 <?php
 /*
- * session 
+ * session 类
+ * Author show
  * copyright PHPBODY
  */
 global $sdb;

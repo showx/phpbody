@@ -1,6 +1,7 @@
 <?php
 /**
 * 路由类
+* Author show
 * powered by phpbody 
 */
 Class r{

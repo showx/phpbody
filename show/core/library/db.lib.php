@@ -2,6 +2,7 @@
 /**
  * 数据库驱动类
  * Author show
+ * copyright phpbody
  */
 Class db{
     private $link;

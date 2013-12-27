@@ -1,5 +1,16 @@
 <?php
+/**
+ * 文件操作相关
+ * Author show
+ * copyright phpbody
+ */
 Class file{
+    /**
+     * 写入文件
+     * @param  [type] $file [description]
+     * @param  [type] $data [description]
+     * @return [type]       [description]
+     */
     function writefile($file,$data)
     {
         try {
@@ -17,6 +28,29 @@ Class file{
                     return $e->getMessage();
             }
     }
+    /**
+     * 上传文件
+     * @return [type] [description]
+     */
+    public function upload()
+    {
 
+    }
+    /**
+     * 遍历目录
+     * @return [type] [description]
+     */
+    public function scandir()
+    {
+
+    }
+    /**
+     * 删除目录
+     * @return [type] [description]
+     */
+    public function deldir()
+    {
+
+    }
 }
 ?>
