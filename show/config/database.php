@@ -11,4 +11,5 @@ $GLOBALS['db']['databases'] = 'PHPBODY';
 //数据库密码
 $GLOBALS['db']['pass'] = 'root';
 
+$GLOBALS['db']['pre'] =  'show_';
 ?>

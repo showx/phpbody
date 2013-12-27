@@ -42,6 +42,8 @@ Class db{
     {
 //        $sql = addslashes($sql);
 //        $sql = self::safe($sql);
+        $str = "#pre#";
+        $sql = str_replace($str,$GLOBALS['db']['pre'],$sql);
         $d = mysql_query($sql) or die("Invalid query: " .$sql.mysql_error());
         return $d;
     }

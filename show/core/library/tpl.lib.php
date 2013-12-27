@@ -1,7 +1,7 @@
 <?php
 /*
  * Author show
- * copy right PHPBODY
+ * copyright PHPBODY
  */
 Class tpl{
     private $lib;
