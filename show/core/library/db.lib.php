@@ -91,7 +91,7 @@ Class db{
     function getone($sql)
     {
         $result = $this->query($sql);
-        $this->xdata = mysql_fetch_array($result,MYSQL_ASSOC)
+        $this->xdata = mysql_fetch_array($result,MYSQL_ASSOC);
         return $this->xdata;
     }
     /*

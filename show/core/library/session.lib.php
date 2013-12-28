@@ -13,7 +13,7 @@ function close_session() {
 } 
 function read_session($sid) {
     global $sdb;
-    $result = $sdb->get_one("SELECT data FROM show_session WHERE id='{$sid}'");
+    $result = $sdb->getone("SELECT data FROM show_session WHERE id='{$sid}'");
     if($result!=false)
     {
         $result = $result['data'];

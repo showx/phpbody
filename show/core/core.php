@@ -3,6 +3,7 @@
  * copry right PHPBODY
  */
 error_reporting(E_ALL);
+date_default_timezone_set ('Asia/Shanghai');
 define("BODY",1);
 if(PHP_SAPI=='cli') //主要用于跑取cron 或 处理数据用
 {
