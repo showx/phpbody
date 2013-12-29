@@ -7,11 +7,14 @@ class admin extends base{
         {
             header("Location:index.php?c=admin&a=login");
         }
+
+
+        tpl::d('admin.tpl');
     }
     public function login()
     {
         global $r;
-        if($r->get->name && $r->get->pass)
+        if($r->get('name') && $r->get('pass'))
         {
             $istrue = adminModel::getAdmin($r->get->name,$r->get->pass);
             if($istrue)

@@ -27,6 +27,33 @@ Class r{
        $this->get = (object)$this->get;
        $this->post = (object)$this->post;
     }
+
+    private function data($at='get',$key,$val)
+    {
+        $tmp = @$this->$at->$key;
+        if(isset($tmp))
+        {
+            return $tmp;
+        }else{
+            return $val;
+        }
+    }
+    /**
+    *  get方式
+    */
+    public function get($key,$val='')
+    {
+        $d = self::data('get',$key,$val);
+        return $d;
+    }
+    /**
+    *  post方式
+    */
+    public function post($key,$val='')
+    {
+        $d = self::data('post',$key,$val);
+        return $d;
+    }
     /*
      * 报告安全
      */
