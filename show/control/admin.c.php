@@ -1,11 +1,15 @@
 <?php
-
+/**
+* 管理后台
+* Author show
+* copyright phpbody
+*/
 class admin extends base{
     public function index()
     {
         if($_SESSION['isadmin'] =='')
         {
-            header("Location:index.php?c=admin&a=login");
+            form::go('admin','login');
         }
 
         tpl::a('name',$_SESSION['username']);
@@ -21,7 +25,7 @@ class admin extends base{
             {
                 $_SESSION['isadmin'] = "yes";
                 $_SESSION['username'] = $r->get->name;
-                header("Location:?c=admin&a=index");
+                form::go('admin','index');
                 exit();
             }
         }
@@ -29,8 +33,7 @@ class admin extends base{
     }
     public function logout()
     {
-        $_SESSION['isadmin'] = '';
-        $_SESSION['username'] = '';
-        header("Location:?c=admin&a=index");
+        $_SESSION['isadmin'] = $_SESSION['username'] ＝ '';
+        form::go('admin','index');
     }
 }

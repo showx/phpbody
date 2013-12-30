@@ -1,0 +1,30 @@
+@charset GBK
+*{
+	margin:0 auto;
+}
+BODY{
+	background:#A0522D;
+}
+#con{
+	width: 800px;
+	height: 600px;
+	margin: 0px auto;
+	background: url(../images/back.png) no-repeat;
+}
+#msg{
+
+width: 400px;
+margin-left:150px;
+position:absolute;
+margin-top: 460px;
+}
+#pp{
+	font-size:12px;
+	font-weight: bold;
+	color: White;
+	text-align:center;
+}
+#pp span a{
+	color: Yellow;
+	text-decoration:none;
+}
