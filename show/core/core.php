@@ -1,5 +1,7 @@
 <?php
 /*
+ * 核心加载
+ * Author show 
  * copry right PHPBODY
  */
 error_reporting(E_ALL);

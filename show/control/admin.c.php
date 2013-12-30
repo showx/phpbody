@@ -8,7 +8,7 @@ class admin extends base{
             header("Location:index.php?c=admin&a=login");
         }
 
-
+        tpl::a('name',$_SESSION['username']);
         tpl::d('admin.tpl');
     }
     public function login()
@@ -20,10 +20,17 @@ class admin extends base{
             if($istrue)
             {
                 $_SESSION['isadmin'] = "yes";
-                header("Location:index.php?c=admin&a=index");
+                $_SESSION['username'] = $r->get->name;
+                header("Location:?c=admin&a=index");
                 exit();
             }
         }
         tpl::d('login.tpl');
+    }
+    public function logout()
+    {
+        $_SESSION['isadmin'] = '';
+        $_SESSION['username'] = '';
+        header("Location:?c=admin&a=index");
     }
 }

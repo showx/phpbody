@@ -38,7 +38,7 @@ function destroy_session($sid) {
 } 
 function clean_session($expire) {
 	$sdb =db::i();
-    $sdb->query("DELETE FROM show_session WHERE DATE_ADD(lastaccess, INTERVAL %d SECOND) < NOW()");
+    $sdb->query("DELETE FROM show_session WHERE DATE_ADD(lastaccess, INTERVAL 7600 SECOND) < NOW()");
 	return $sdb->affected_rows();
 }
 session_set_save_handler('open_session', 'close_session', 'read_session', 'write_session', 'destroy_session', 'clean_session');
