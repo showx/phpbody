@@ -33,7 +33,7 @@ class admin extends base{
     }
     public function logout()
     {
-        $_SESSION['isadmin'] = $_SESSION['username'] ＝ '';
+        $_SESSION['isadmin'] = $_SESSION['username'] = '';
         form::go('admin','index');
     }
 }

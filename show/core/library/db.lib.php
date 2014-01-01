@@ -39,6 +39,7 @@ Class db{
     {
         $this->link = mysql_connect($GLOBALS['db']['host'],$GLOBALS['db']['user'],$GLOBALS['db']['pass']) or die('请检查数据库配置');
         mysql_select_db($GLOBALS['db']['databases'],$this->link) or die('数据库No Found');
+        self::query("set names utf8");
     }
     /*
      * 建立查询

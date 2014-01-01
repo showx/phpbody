@@ -67,6 +67,16 @@ CREATE TABLE `show_group` (
   PRIMARY KEY  (`groupid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 INSERT INTO show_group VALUES ('1', '管理组', '');
+DROP TABLE IF EXISTS `show_menu`;
+CREATE TABLE `show_menu` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `english` varchar(255) DEFAULT NULL,
+  `parentid` int(11) DEFAULT NULL,
+  `listorder` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+INSERT INTO `show_menu` VALUES ('1', '根目录', 'menu', '0', null), ('2', '简介', 'jianjie', '1', null);
 EOF;
 $data = explode(";", $sql);
 foreach($data as $sql)
