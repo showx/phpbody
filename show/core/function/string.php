@@ -1,4 +1,9 @@
 <?php
+/**
+* 字符处理
+* Author show
+* copyright phpbody(www.phpbody.com)
+*/
 Class string
 {
 	/**
@@ -8,15 +13,51 @@ Class string
 	 * @param  [type] $getend   [description]
 	 * @return [type]           [description]
 	 */
-    function static getstring($strings,$getstart,$getend) {
+   public static function  getstring($strings,$getstart,$getend) {
 		$strings=explode($getstart,$strings);
 		$strings=$strings[1];
 		$strings=explode($getend,$strings);
 		return $strings[0];
 	}
+  /**
+   * 判断是否utf8编码
+   * @param  [type]  $word [description]
+   * @return boolean       [description]
+   */
+  public static function is_utf8($word){
+	  if (preg_match("/^([".chr(228)."-".chr(233)."]{1}[".chr(128)."-".chr(191)."]{1}[".chr(128)."-".chr(191)."]{1}){1}/",$word) == true || preg_match("/([".chr(228)."-".chr(233)."]{1}[".chr(128)."-".chr(191)."]{1}[".chr(128)."-".chr(191)."]{1}){1}$/",$word) == true || preg_match("/([".chr(228)."-".chr(233)."]{1}[".chr(128)."-".chr(191)."]{1}[".chr(128)."-".chr(191)."]{1}){2,}/",$word) == true){
+	  return true;
+	  }else{
+	  return false;
+	  }
+  }
 
+    /**
+     * 正则辅助函数
+     * @param  [type] $gui  [description]
+     * @param  [type] $data [description]
+     * @param  string $a    [description]
+     * @return [type]       [description]
+     */
+    public static function preg($gui,$data,$a='')
+    {
+        if($a=='all')
+        {
+            preg_match_all($gui,$data,$return);    
+           
+        }else{
+            preg_match($gui,$data,$return);    
+        }
+        if(isset($return[1]))
+        {
+            return $return[1];    
+        }else{
+            return '';
+        }
+        
+    }
 
-	function static get_charsetconv($convmode,$content) {
+	static function  get_charsetconv($convmode,$content) {
 		if (!function_exists($convmode)) {
 			include SHOWFUNCTION.'charset_conv.php';
 		}
@@ -24,7 +65,7 @@ Class string
 		return $content;
 	}
 
-	function static toutf8($str,$LANGPAK='utf8') {
+	static function  toutf8($str,$LANGPAK='utf8') {
 		if($LANGPAK=='gbk') {
 			$str=get_charsetconv(g2u,$str);
 		}elseif($LANGPAK=='big5') {
@@ -35,7 +76,7 @@ Class string
 		return $str;
 	}
 
-	function static togbk($str,$LANGPAK='utf8') {
+	static function  togbk($str,$LANGPAK='utf8') {
 		if($LANGPAK=='gbk') {
 			$str=$str;
 		}elseif($LANGPAK=='big5') {
@@ -46,7 +87,7 @@ Class string
 		return $str;
 	}
 
-	function static tobig5($str,$LANGPAK='utf8') {
+	static function  tobig5($str,$LANGPAK='utf8') {
 		if($LANGPAK=='gbk') {
 			$str=get_charsetconv(g2b,$str);
 		}elseif($LANGPAK=='big5') {
@@ -61,7 +102,7 @@ Class string
 	 * @param  integer $x [description]
 	 * @return [type]     [description]
 	 */
-	function static str_rand($x=4){
+	static function  str_rand($x=4){
 		$str='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 		$string='';
 		for($i=0;$i<$x;$i++) $string.=substr($str,mt_rand(0,strlen($str)-1),1);
@@ -75,7 +116,7 @@ Class string
 	 * @param  integer $in_parent [description]
 	 * @return [type]             [description]
 	 */
-	function static js_location($url,$time=3000,$in_parent=0){
+	static function  js_location($url,$time=3000,$in_parent=0){
 		$parent = $in_parent ? 'parent.' : '';
 		return '<script type="text/JavaScript">setTimeout("window.'.$parent.'location=\''.$url.'\';",'.$time.');</script>';
 	}
@@ -84,7 +125,7 @@ Class string
 	 * @param  [type] $arr [description]
 	 * @return [type]      [description]
 	 */
-	function static get_max_key($arr) {
+	static function  get_max_key($arr) {
 		$indexarr=array_keys($arr);
 		rsort($indexarr);
 		return $indexarr[0];
