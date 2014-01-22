@@ -28,6 +28,7 @@ if(PHP_SAPI=='cli') //主要用于跑取cron 或 处理数据用
     //模型层
     define("SHOWMODEL",PHPBODY."/show/model");
 
+    include SHOWCONFIG."/cache.php";
     include SHOWCONFIG."/database.php";
     include SHOWCONFIG."/template.php";
     include SHOWLIBRARY."/autoload.lib.php";
@@ -54,5 +55,6 @@ if(PHP_SAPI=='cli') //主要用于跑取cron 或 处理数据用
         $a = $r->get->a;
         $tmp->$a();
     }
+    $r->save();
 }
 ?>

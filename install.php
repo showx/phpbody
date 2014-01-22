@@ -77,6 +77,13 @@ CREATE TABLE `show_menu` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 INSERT INTO `show_menu` VALUES ('1', '根目录', 'menu', '0', null), ('2', '简介', 'jianjie', '1', null);
+DROP TABLE IF EXISTS `show_debug`;
+CREATE TABLE `show_debug` (
+  `url` varchar(255) DEFAULT NULL,
+  `get` text,
+  `post` text,
+  `timestamp` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 EOF;
 $data = explode(";", $sql);
 foreach($data as $sql)

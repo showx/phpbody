@@ -2,11 +2,12 @@
 /**
 * 路由类
 * Author show
-* powered by phpbody 
+* powered by phpbody (www.phpbody.com)
 */
 Class r{
     public $get;
     public $post;
+    public $req;
     public function __construct()
     {
         if($_SERVER['REQUEST_METHOD']=='GET')
@@ -14,18 +15,22 @@ Class r{
             foreach($_GET as $key =>$val)
             {
                 $this->get[$key] = $val;
+                $this->req[$key] = $val;
             }
         }elseif($_SERVER['REQUEST_METHOD']=='POST')
         {
             foreach($_POST as $key =>$val)
             {
                 $this->post[$key] = $val;
+                $this->req[$key] = $val;
             }
         }
        self::_safe($this->get);
        self::_safe($this->post);
+       self::_safe($this->req);
        $this->get = (object)$this->get;
        $this->post = (object)$this->post;
+       $this->req = (object)$this->req;
     }
 
     private function data($at='get',$key,$val)
@@ -37,6 +42,11 @@ Class r{
         }else{
             return $val;
         }
+    }
+    public function req($key,$val='')
+    {
+        $d = self::data('req',$key,$val);
+        return $d;
     }
     /**
     *  get方式
@@ -69,5 +79,19 @@ Class r{
             $data = addslashes($data);
         }
         return $data;
+    }
+    public function save()
+    {
+        global $sdb;
+        $tmp = $GLOBALS['url']['debug'];
+        if($tmp)
+        {
+            $url = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+            $get = serialize($this->get);
+            $post = serialize($this->post);
+            $time = time();
+            $sql = "insert into show_debug(`url`,`get`,`post`,`timestamp`) values('{$url}','{$get}','{$post}','{$time}')";
+            $sdb->query($sql);
+        }
     }
 }
