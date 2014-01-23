@@ -100,12 +100,13 @@ Class db{
      */
     function getall($sql)
     {
+        $data = '';
         $result = $this->query($sql);
         while($this->xdata = mysql_fetch_array($result,MYSQL_ASSOC))
         {
-            $this->data[] = $this->xdata;
+            $data[] = $this->xdata;
         }
-        return $this->data;
+        return $data;
     }
 }
 ?>
