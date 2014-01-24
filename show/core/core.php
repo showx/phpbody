@@ -40,7 +40,13 @@ if(PHP_SAPI=='cli') //主要用于跑取cron 或 处理数据用
     if(!isset($r->get->c))
     {
         $home = new home();
-        $home->index();
+        if(!isset($r->req->a))
+        {
+            $home->index();
+        }else{
+            $t = $r->req->a;
+            @$home->$t();
+        }
     }else{
         if(!isset($r->get->a))
         {

@@ -2,7 +2,7 @@
 /**
  * 数据库驱动类
  * Author show
- * copyright phpbody
+ * copyright phpbody (www.phpbody.com)
  */
 Class db{
     private $link;
@@ -49,10 +49,32 @@ Class db{
     {
 //        $sql = addslashes($sql);
 //        $sql = self::safe($sql);
+        $sqlkey = md5($sql);
+        $d = self::cache($sqlkey);
+        if($d)
+        {
+            return $d;
+        }
         $str = "#pre#";
         $sql = str_replace($str,$GLOBALS['db']['pre'],$sql);
         $d = mysql_query($sql) or die("Invalid query: " .$sql.mysql_error());
+        if($GLOBALS['cache']['sql'])
+        {
+            cache::set("sql",$sqlkey,$d);
+        }
         return $d;
+    }
+    /**
+    * 读取缓存
+    *
+    */
+    private function cache($sqlkey)
+    {
+        if($GLOBALS['cache']['sql'])
+        {
+            $data = cache::get("sql",$sqlkey);
+            return $data;
+        }
     }
     /**
      * 影响的条数
