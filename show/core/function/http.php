@@ -1,5 +1,28 @@
 <?php
+/**
+* 网络辅助类
+* Author show
+* copyright phpbody (www.phpbody.com)
+*/
 Class http{
+    /**
+    * 获取header
+    */
+    public static function get_header($url){
+        $ch  = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_HEADER, true);
+        curl_setopt($ch, CURLOPT_NOBODY,true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
+        curl_setopt($ch, CURLOPT_AUTOREFERER,true);
+        curl_setopt($ch, CURLOPT_TIMEOUT,30);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        'Accept: */*',
+        'User-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)',
+        'Connection: Keep-Alive'));
+        $header = curl_exec($ch);
+        return $header;
+    }
     /**
      * post 
      * @param  [type] $url   [description]
