@@ -1,4 +1,5 @@
 <?php
+if(!defined('BODY')){exit();}
 /**
 * 窗体类
 * Author show

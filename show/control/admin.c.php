@@ -1,4 +1,5 @@
 <?php
+if(!defined('BODY')){exit();}
 /**
 * 管理后台
 * Author show

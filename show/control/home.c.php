@@ -1,4 +1,5 @@
 <?php
+if(!defined('BODY')){exit();}
 /**
 * 首页应用
 * Author show

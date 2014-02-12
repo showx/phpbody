@@ -1,4 +1,5 @@
 <?php
+if(!defined('BODY')){exit();}
 /**
  * 文件操作相关
  * Author show
