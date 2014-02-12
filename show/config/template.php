@@ -3,9 +3,11 @@
  * 模板配置
  */
 
+define("TEMPLATES","default");
+
 define("templatelib",PHPBODY."/show/display/libs");
 
-define("template_dir",PHPBODY."/show/display/templates");
+define("template_dir",PHPBODY."/templates/".TEMPLATES);
 
 define("compile_dir",PHPBODY."/show/display/compile");
 
