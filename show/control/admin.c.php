@@ -2,7 +2,7 @@
 /**
 * 管理后台
 * Author show
-* copyright phpbody
+* copyright phpbody (www.phpbody.com)
 */
 class admin extends base{
     public function index()

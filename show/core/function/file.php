@@ -6,6 +6,44 @@
  */
 Class file{
     /**
+     * 生成默认index文件
+     * 避免列出目录漏洞，
+     * 扫描目录，生成默认index文件是有必要的
+     */
+    public static function createlistindex()
+    {
+        $dh = opendir(PHPBODY);
+
+    }
+    /**
+     * 获取文件缓存
+     * @param  [type] $name [description]
+     * @return [type]       [description]
+     */
+    public static function filecache_get($name)
+    {
+
+    }
+    /**
+     * 设置文件缓存
+     * @param  [type] $name [description]
+     * @param  [type] $data [description]
+     * @return [type]       [description]
+     */
+    public static function filecache_put($name,$data)
+    {
+
+    }
+    /**
+     * 删除超时的文件缓存
+     * @param  [type] $name [description]
+     * @return [type]       [description]
+     */
+    public static function filecache_del($name)
+    {
+
+    }
+    /**
      * 写入文件
      * @param  [type] $file [description]
      * @param  [type] $data [description]
@@ -34,7 +72,7 @@ Class file{
      */
     public static function upload()
     {
-        
+
     }
     /**
      * 遍历目录
@@ -42,7 +80,16 @@ Class file{
      */
     public static function scandir()
     {
+        if($dh = opendir($path))
+        {
+            while (($file = readdir($dh)) !== false) {
+                if($file!='.' || $file!='..')
+                {
 
+                }
+            }
+
+        }
     }
     /**
      * 删除目录
