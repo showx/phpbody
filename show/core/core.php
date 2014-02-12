@@ -27,7 +27,8 @@ if(PHP_SAPI=='cli') //主要用于跑取cron 或 处理数据用
     define("SHOWCONTROL",PHPBODY."/show/control");
     //模型层
     define("SHOWMODEL",PHPBODY."/show/model");
-
+    
+    include SHOWCONFIG."/config.php";
     include SHOWCONFIG."/cache.php";
     include SHOWCONFIG."/database.php";
     include SHOWCONFIG."/template.php";
