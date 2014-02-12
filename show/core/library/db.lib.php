@@ -64,6 +64,55 @@ Class db{
         }
         return $d;
     }
+    public function batchinsert()
+    {
+
+    }
+    public function batchupdate()
+    {
+        
+    }
+    /**
+     * 插入数据
+     * @param  [type] $table  [description]
+     * @param  [type] $keyarr [description]
+     * @param  [type] $valarr [description]
+     * @return [type]         [description]
+     */
+    public function insert($table,$keyarr,$valarr)
+    {
+        $keys = implode("`,`",$keyarr);
+        $values = implode("','",$valarr);
+        $sql = "insert into {$table}(`{$keys}`) values('{$values}')";
+        $tmp = self::query($sql);
+        return $tmp;
+    }
+    /**
+     * 更新数据
+     * @param  [type] $table [description]
+     * @param  [type] $data  [description]
+     * @param  string $where [description]
+     * @return [type]        [description]
+     */
+    public function update($table,$data,$where='')
+    {
+        $tmp ='';
+        $i = 0;
+        foreach($data as $key=>$val)
+        {
+                if($i==0)
+                {
+                    $tmp .= "{$key} = {$val} ";    
+                }else{
+                    $tmp .= ",{$key} = {$val} ";
+                }
+                
+                $i=1;
+        }
+        $sql = "update {$table} set {$tmp} {$where}";
+        $return = db::query($sql);
+        return $return;
+    }
     /**
     * 读取缓存
     *
