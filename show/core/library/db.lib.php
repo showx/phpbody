@@ -6,7 +6,6 @@
  */
 Class db{
     private $link;
-    private $array;
     private $db;
     private $sql;
     private $data;
@@ -14,6 +13,7 @@ Class db{
     private static $_instance;
     private $safestring;
     private $replacestring;
+    private $kput = array();
     /*
      * 调用时候建立
      */
@@ -47,6 +47,7 @@ Class db{
      */
     public function query($sql)
     {
+
 //        $sql = addslashes($sql);
 //        $sql = self::safe($sql);
         $sqlkey = md5($sql);
@@ -57,12 +58,22 @@ Class db{
         }
         $str = "#pre#";
         $sql = str_replace($str,$GLOBALS['db']['pre'],$sql);
+        $starttime = microtime(true);
         $d = mysql_query($sql) or die("Invalid query: " .$sql.mysql_error());
+        $endtime = microtime(true);
+        $whattime = $endtime - $starttime;
+        
         if($GLOBALS['cache']['sql'])
         {
             cache::set("sql",$sqlkey,$d);
         }
         return $d;
+    }
+    public function query_out($sql)
+    {
+        $str = "#pre#";
+        $sql = str_replace($str,$GLOBALS['db']['pre'],$sql);
+        mysql_unbuffered_query($sql);
     }
     public function batchinsert()
     {
@@ -70,7 +81,29 @@ Class db{
     }
     public function batchupdate()
     {
-        
+
+    }
+    public function selectdb($dbname)
+    {
+        mysql_select_db($dbname,$this->link);
+    }
+    /**
+     * 变量入库 
+     * @param  [type] $key [description]
+     * @param  [type] $val [description]
+     * @return [type]      [description]
+     */
+    public function put($key,$val)
+    {
+        $this->kput[$key] = $val;
+    }
+    public function dinsert($table)
+    {
+        $key = array_key($this->kput);
+        $val = array_values($this->kput);
+        $return = self::insert($table,$key,$val);
+        $this->kput = array();
+        return $return;
     }
     /**
      * 插入数据
@@ -79,11 +112,11 @@ Class db{
      * @param  [type] $valarr [description]
      * @return [type]         [description]
      */
-    public function insert($table,$keyarr,$valarr)
+    public function insert($table,$keyarr,$valarr,$d = 'insert') //replace
     {
         $keys = implode("`,`",$keyarr);
         $values = implode("','",$valarr);
-        $sql = "insert into {$table}(`{$keys}`) values('{$values}')";
+        $sql = "{$d} into {$table}(`{$keys}`) values('{$values}')";
         $tmp = self::query($sql);
         return $tmp;
     }
@@ -126,12 +159,20 @@ Class db{
         }
     }
     /**
+     * 关闭数据库
+     * @return [type] [description]
+     */
+    public function close()
+    {
+        mysql_close($this->link);
+    }
+    /**
      * 影响的条数
      * @return [type] [description]
      */
     public function affected_rows()
     {
-        return mysql_affected_rows();
+        return mysql_affected_rows($this->link);
     }
     /**
      * 获取最后插入的ID
@@ -180,4 +221,3 @@ Class db{
         return $data;
     }
 }
-?>

@@ -15,6 +15,10 @@ Class file{
         $dh = opendir(PHPBODY);
 
     }
+    public static function putlog()
+    {
+        $string = "<?php exit();?>";
+    }
     /**
      * 获取文件缓存
      * @param  [type] $name [description]
