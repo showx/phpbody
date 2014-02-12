@@ -6,6 +6,19 @@
 */
 Class form{
     /**
+     * 调试函数
+     * @param  [type] $vararr [description]
+     * @return [type]         [description]
+     */
+    public static function sbug($vararr)
+    {
+        $tem = "<div style='height:80px;overflow:overflow-y;'><pre>";
+        $e = var_export($vararr,true);
+        $tem .= $e;
+        $tem .= "</pre></div>";
+        echo $tem;
+    }
+    /**
      * 获取分页
      * @param  [type] $page  [description]
      * @param  [type] $count [description]

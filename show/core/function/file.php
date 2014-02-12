@@ -2,7 +2,7 @@
 /**
  * 文件操作相关
  * Author show
- * copyright phpbody
+ * copyright phpbody (www.phpbody.com)
  */
 Class file{
     /**
@@ -34,7 +34,7 @@ Class file{
      */
     public static function upload()
     {
-
+        
     }
     /**
      * 遍历目录

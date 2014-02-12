@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>管理后台</title>
+    <title>PHPBODY管理后台</title>
 
     <link href="/static/css/bootstrap.css" rel="stylesheet">
 
