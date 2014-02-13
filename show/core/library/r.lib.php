@@ -83,7 +83,7 @@ Class r{
     public function save()
     {
         global $sdb;
-        $tmp = $GLOBALS['url']['debug'];
+        $tmp = $GLOBALS['debug']['url'];
         if($tmp)
         {
             $url = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];

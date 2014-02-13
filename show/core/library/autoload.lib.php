@@ -18,9 +18,11 @@ function __autoload($class_name) {
         require_once SHOWFUNCTION."/".$class_name.".php";
     }
 }
-class auto()
+class AutoL
 {
-    public static loadClass(){}
+    public static function loadClass(){
+
+    }
 }
-//spl_autoload_register(array('Loader', 'loadClass'));
+//spl_autoload_register(array('AutoL', 'loadClass'));
 ?>

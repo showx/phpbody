@@ -4,9 +4,11 @@
  * Author show 
  * copry right PHPBODY
  */
-error_reporting(E_ALL);
+//error_reporting(E_ALL);
 date_default_timezone_set ('Asia/Shanghai');
 define("BODY",1);
+
+
 if(PHP_SAPI=='cli') //主要用于跑取cron 或 处理数据用
 {
     define("SHOWCONFIG",PHPBODY."/show/config");
@@ -28,6 +30,19 @@ if(PHP_SAPI=='cli') //主要用于跑取cron 或 处理数据用
     //模型层
     define("SHOWMODEL",PHPBODY."/show/model");
     
+    /**
+     * 异常处理
+     */
+    function exception($e)
+    {
+        if(is_object($e))
+        {
+            echo "<div><b>show:</b> ".$e->getLine().":".$e->getMessage()."<br/>-------------".$e->getFile()."</div>";
+        }
+    }
+    set_exception_handler('exception');
+    set_error_handler('exception', E_ALL);
+
     include SHOWCONFIG."/config.php";
     include SHOWCONFIG."/cache.php";
     include SHOWCONFIG."/database.php";
@@ -63,5 +78,14 @@ if(PHP_SAPI=='cli') //主要用于跑取cron 或 处理数据用
         $tmp->$a();
     }
     $r->save();
+    function pageshutdown()
+    {
+        if($GLOBALS['debug']['page'] == true)
+        {
+            
+        }
+    }
+    register_shutdown_function(pageshutdown);
+
 }
 ?>

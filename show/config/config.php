@@ -4,5 +4,7 @@
  */
 $GLOBALS['uploads']['temp'] = 'uploads';
 
-$GLOBALS['url']['debug'] = true;
+$GLOBALS['debug']['url'] = true;
+
+$GLOBALS['debug']['page'] = true;
 ?>
