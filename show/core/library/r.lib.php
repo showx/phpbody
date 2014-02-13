@@ -94,4 +94,12 @@ Class r{
             $sdb->query($sql);
         }
     }
+    public function __sleep()
+    {
+
+    }
+    public function __wakeup()
+    {
+        
+    }
 }
