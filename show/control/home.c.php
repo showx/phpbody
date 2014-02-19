@@ -3,7 +3,7 @@ if(!defined('BODY')){exit();}
 /**
 * 首页应用
 * Author show
-* copyright phpbody
+* copyright phpbody (www.phpbody.com)
 */
 Class home extends base{
 

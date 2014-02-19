@@ -13,7 +13,7 @@ Class form{
      */
     public static function sbug($vararr)
     {
-        $tem = "<div style='height:80px;overflow:overflow-y;'><pre>";
+        $tem = "<div style='background-color:#000000;color:green;width:auto;height:120px;overflow-y:scroll;'><pre>";
         $e = var_export($vararr,true);
         $tem .= $e;
         $tem .= "</pre></div>";
