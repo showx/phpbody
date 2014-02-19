@@ -24,6 +24,26 @@ Class http{
         $header = curl_exec($ch);
         return $header;
     }
+    public static function switchheader($type='',$file)
+    {
+      if($type=="xml")
+      {
+        header('Content-Type: text/xml');
+      }elseif($type=="nocache")
+      {
+        header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+        header("Cache-Control: no-cache");
+        header("Pragma: no-cache");
+      }elseif($type=="pdf")
+      {
+        header("Content-type:application/pdf");
+        header("Content-Disposition:attachment;filename='{$file}'");
+      }elseif($type=="charset")
+      {
+        header("Content-type: text/html; charset=utf-8"); //默认是utf-8
+      }
+       
+    }
     /**
      * post 
      * @param  [type] $url   [description]

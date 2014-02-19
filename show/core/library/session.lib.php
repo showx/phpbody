@@ -2,7 +2,7 @@
 /*
  * session 类
  * Author show
- * copyright PHPBODY
+ * copyright PHPBODY (www.phpbody.com)
  */
 function open_session() {
     return true;
