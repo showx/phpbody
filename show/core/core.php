@@ -2,34 +2,32 @@
 /*
  * 核心加载
  * Author show 
- * copry right PHPBODY
+ * copry right PHPBODY (www.phpbody.com)
  */
 //error_reporting(E_ALL);
 date_default_timezone_set ('Asia/Shanghai');
 define("BODY",1);
-
-
-if(PHP_SAPI=='cli') //主要用于跑取cron 或 处理数据用
+define("SHOWCONFIG",PHPBODY."/show/config");
+define("SHOWLIBRARY",PHPBODY."/show/core/library");
+define("SHOWFUNCTION",PHPBODY."/show/core/function");
+//控制层
+define("SHOWCONTROL",PHPBODY."/show/control");
+//模型层
+define("SHOWMODEL",PHPBODY."/show/model");
+include SHOWLIBRARY."/autoload.lib.php";
+include SHOWCONFIG."/config.php";
+include SHOWCONFIG."/cache.php";
+include PHPBODY."/show/core/cfun.php";
+include SHOWCONFIG."/database.php";
+$GLOBALS['sdb'] = db::i();
+if(PHP_SAPI!=='cli') //主要用于跑取cron 或 处理数据用
 {
-    define("SHOWCONFIG",PHPBODY."/show/config");
-    define("SHOWLIBRARY",PHPBODY."/show/core/library");
-    define("SHOWFUNCTION",PHPBODY."/show/core/function");
-}else{
     //站群相关
     define("HOST",$_SERVER['HTTP_HOST']);
-    //配置文件文件夹
-    define("SHOWCONFIG",PHPBODY."/show/config");
     //模板文件目录
     define("SHOWTEMPLATE",PHPBODY."/show/display");
-    //库文件
-    define("SHOWLIBRARY",PHPBODY."/show/core/library");
-    //函数文件 几个工具
-    define("SHOWFUNCTION",PHPBODY."/show/core/function");
-    //控制层
-    define("SHOWCONTROL",PHPBODY."/show/control");
-    //模型层
-    define("SHOWMODEL",PHPBODY."/show/model");
-    
+    include SHOWLIBRARY."/session.lib.php";
+    include SHOWCONFIG."/template.php";
     /**
      * 异常处理
      */
@@ -42,14 +40,7 @@ if(PHP_SAPI=='cli') //主要用于跑取cron 或 处理数据用
     }
     set_exception_handler('exception');
     set_error_handler('exception', E_ALL);
-
-    include SHOWCONFIG."/config.php";
-    include SHOWCONFIG."/cache.php";
-    include SHOWCONFIG."/database.php";
-    include SHOWCONFIG."/template.php";
-    include SHOWLIBRARY."/autoload.lib.php";
-    $GLOBALS['sdb'] = db::i();
-    include SHOWLIBRARY."/session.lib.php";
+}
     $GLOBALS['r'] = new r(); 
     global $r,$sdb;
     //route
@@ -87,5 +78,5 @@ if(PHP_SAPI=='cli') //主要用于跑取cron 或 处理数据用
     }
     register_shutdown_function(pageshutdown);
 
-}
+
 ?>

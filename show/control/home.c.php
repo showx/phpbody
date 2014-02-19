@@ -9,8 +9,6 @@ Class home extends base{
 
     public function index()
     {
-    	
-    	exit();
     	tpl::a("test","Hello World!!");
         tpl::d('index.tpl');
     }

@@ -35,13 +35,31 @@ Class file{
                 }
             }
         }
-        
     }
+    /**
+     * 写入日志
+     * @param  [type] $filename [description]
+     * @param  [type] $log      [description]
+     * @return [type]           [description]
+     */
     public static function putlog($filename,$log);
     {
         $string = "<?php exit();?>";
         $logpath = PHPBODY."/show/debug/log/";
         file_put_contents($logpath.$filename,$log,FILE_APPEND);
+    }
+    /**
+     * 要有后台查看log的功能
+     * @param  [type] $filename [description]
+     * @return [type]           [description]
+     */
+    public static function getlog($filename)
+    {
+        if(file_exists($filename))
+        {
+            $neirong = file_get_contents($filename);
+            return $neirong;
+        }
     }
     /**
      * 获取文件缓存
@@ -101,6 +119,15 @@ Class file{
     public static function upload()
     {
         
+    }
+    /**
+     * 自动生成伪静态规则 (nginx|apache|sae)
+     * 机器生成方便服务器填写
+     * @return [type] [description]
+     */
+    public static function cratejingtai($txt,$type)
+    {
+
     }
     /**
      * 遍历目录

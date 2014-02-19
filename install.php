@@ -9,7 +9,6 @@ if(file_exists(PHPBODY."/install.lok"))
 {
     echo "It's installed...";exit();
 }
-
 $GLOBALS['sdb'] = db::i();
 global $sdb;
 $sql=<<<EOF
@@ -41,6 +40,9 @@ CREATE TABLE `show_content` (
   `content` text,
   `type` int(11) default NULL,
   `categoryid` int(11) default NULL,
+  `tags` varchar(255) default NULL,
+  `timestamp` int(11) default NULL,
+  `listorder` int(11) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -84,6 +86,33 @@ CREATE TABLE `show_debug` (
   `post` text,
   `timestamp` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `show_users`;
+CREATE TABLE `show_users` (
+  `id` int(11) NOT NULL default '0',
+  `username` varchar(255) default NULL,
+  `password` varchar(255) default NULL,
+  `mcrypt` varchar(255) default NULL,
+  `timestamp` int(11) default NULL,
+  `lasttime` int(11) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `show_comment`;
+CREATE TABLE `show_comment` (
+  `id` int(11) default NULL,
+  `username` varchar(255) default NULL,
+  `content` text,
+  `timestamp` int(11) default NULL,
+  `title` varchar(255) default NULL,
+  `touser` int(11) default NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `show_config`;
+CREATE TABLE `show_config` (
+  `id` int(11) NOT NULL default '0',
+  `keys` varchar(255) default NULL,
+  `values` varchar(255) default NULL,
+  `timestamp` int(11) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 EOF;
 $data = explode(";", $sql);
 foreach($data as $sql)

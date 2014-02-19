@@ -68,6 +68,6 @@ Class form{
     	{
     		$url = "?c={$c}&a={$a}";
     	}
-    	header("Location:{$url}");
+    	http::switchheader("location",$url);
     }
 }

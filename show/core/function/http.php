@@ -24,7 +24,13 @@ Class http{
         $header = curl_exec($ch);
         return $header;
     }
-    public static function switchheader($type='',$file)
+    /**
+     * php的header相关操作
+     * @param  string $type [description]
+     * @param  [type] $tmp  [description]
+     * @return [type]       [description]
+     */
+    public static function switchheader($type='',$tmp)
     {
       if($type=="xml")
       {
@@ -37,10 +43,13 @@ Class http{
       }elseif($type=="pdf")
       {
         header("Content-type:application/pdf");
-        header("Content-Disposition:attachment;filename='{$file}'");
+        header("Content-Disposition:attachment;filename='{$tmp}'");
       }elseif($type=="charset")
       {
-        header("Content-type: text/html; charset=utf-8"); //默认是utf-8
+        header("Content-type: text/html; charset={$tmp}"); //默认是utf-8
+      }elseif($type=="location")
+      {
+        header("Location:{$tmp}");
       }
        
     }
