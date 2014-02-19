@@ -77,6 +77,4 @@ if(PHP_SAPI!=='cli') //主要用于跑取cron 或 处理数据用
         }
     }
     register_shutdown_function(pageshutdown);
-
-
 ?>
