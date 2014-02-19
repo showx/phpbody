@@ -68,6 +68,7 @@ if(PHP_SAPI!=='cli') //主要用于跑取cron 或 处理数据用
         $a = $r->get->a;
         $tmp->$a();
     }
+
     $r->save();
     function pageshutdown()
     {

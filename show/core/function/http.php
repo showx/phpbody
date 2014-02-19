@@ -78,7 +78,7 @@ Class http{
      * @param  [type] $url [description]
      * @return [type]      [description]
      */
-    pubilc static function  url_fetch($url) {
+    public static function  url_fetch($url) {
         $contents='';
         if (function_exists('curl_init')) {
             $ch=curl_init();

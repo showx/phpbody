@@ -10,21 +10,21 @@ Class r{
     public $req;
     public function __construct()
     {
-        if($_SERVER['REQUEST_METHOD']=='GET')
-        {
+        // if($_SERVER['REQUEST_METHOD']=='GET')  //容易造成post和get只能其中一个
+        // {
             foreach($_GET as $key =>$val)
             {
                 $this->get[$key] = $val;
                 $this->req[$key] = $val;
             }
-        }elseif($_SERVER['REQUEST_METHOD']=='POST')
-        {
+        // }elseif($_SERVER['REQUEST_METHOD']=='POST')
+        // {
             foreach($_POST as $key =>$val)
             {
                 $this->post[$key] = $val;
                 $this->req[$key] = $val;
             }
-        }
+        // }
        self::_safe($this->get);
        self::_safe($this->post);
        self::_safe($this->req);

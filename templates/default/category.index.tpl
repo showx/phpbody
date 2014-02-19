@@ -13,6 +13,9 @@
   		</div>
   		<div id="content">
   			<ul id="navigation">
+          <{foreach from=$menu item=item}>
+            
+          <{/foreach}>
           <li><a href="?1">Item 1</a>
             <ul>
               <li><a href="?1.0">Item 1.0</a>
@@ -57,6 +60,7 @@
       });
         </script>
   		</div>
+        <{include file="category.add.tpl"}>
   	</div>
   </body>
 </html>
