@@ -52,14 +52,14 @@ function SaveImage($fileName=''){
 	$this->dst_file=$fileName ? $fileName : $this->dst_file;
 	//chomd($this->dst_file,777);
 	switch($this->src_type) {
-		case IMAGETYPE_JPEG :
-		imagejpeg($this->dImage,$this->dst_file,100);
+	case IMAGETYPE_JPEG :
+		@imagejpeg($this->dImage,$this->dst_file,100);
 		break;
 	case IMAGETYPE_PNG :
-		imagepng($this->dImage,$this->dst_file);
+		@imagepng($this->dImage,$this->dst_file);
 		break;
 	case IMAGETYPE_GIF :
-		imagegif($this->dImage,$this->dst_file);
+		@imagegif($this->dImage,$this->dst_file);
 		break;
 	default:
 		break;

@@ -37,6 +37,82 @@ Class file{
         }
     }
     /**
+     * 创建目录
+     * @return [type] [description]
+     */
+    public static function createdir($path,$mode=0777)
+    {
+        $path = str_replace("//","/",$path);
+        $p = explode("/",$path);
+        $count = count($p) - 1;
+        $dir = '';
+        for($i=0;$i<$count;$i++)
+        {
+            $dir.= $p[$i];
+            if(is_dir($dir))
+            {
+                $dir .="/";
+                if(mkdir($dir))
+                {
+                    @chmod($dir,$mode);
+                }
+            }
+        }
+        return is_dir($dir);
+    }
+        /*
+        *  下载远程图片，转换图片规格
+        */
+       function thumb( $url, $width=220,$height=90,$atmp = 1)
+       {
+           $imgw = $width; //220;
+           $imgh = $height;//90;
+           $cname = md5( $url.$width.$height );
+           $img_path  = '/';
+           $ext = self::fileext($url);
+           $img_url   = PHPBODY.'/'.$GLOBALS['uploads']['temp'].$img_path."/{$cname}.{$ext}"; //图片扩展要注意一下
+           $img_file  = PHPBODY.'/'.$GLOBALS['uploads']['temp'].$img_path."/{$cname}.{$ext}"; //不一定是jpg
+           $img_url = str_replace(PHPBODY,'', $img_url);
+           if(file_exists($img_file))
+           {
+            return $img_url;
+           }
+           $tmp = PHPBODY.'/'.$GLOBALS['uploads']['temp'].$img_path;
+           @self::createdir($tmp);
+           $img_file_tmp = $img_file.'.tmp';
+           
+           //下载文件, 临时保存到$img_file_tmp
+           $img = http::url_fetch($url);
+
+           // $url = PHPBODY.$url; //针对本地文件
+           // $img_file_tmp = $url; //读取本地文件不用远程获取内容了
+          
+           if( empty($img) ) {
+               return $url;
+           }
+           file_put_contents($img_file_tmp, $img);
+           @chmod($img_file_tmp, 0777);
+           
+           $ic=new image($img_file_tmp,$img_file);
+           $ic->Crop($imgw,$imgh,$atmp);
+           $ic->SaveImage();
+           $ic->destory();
+           if( filesize($img_file) > 1024 ) {
+               return $img_url;
+           } else {
+               return $url;
+           }
+       }    
+    /**
+     * 获取文件扩展名
+     * @param  [type] $filename [description]
+     * @return [type]           [description]
+     */
+    public static function fileext($filename)
+    {
+        return strtolower(trim(substr(strrchr($filename, '.'), 1, 10)));
+    }
+    /**
      * 写入日志
      * @param  [type] $filename [description]
      * @param  [type] $log      [description]
