@@ -29,7 +29,7 @@ class admin extends base{
                 exit();
             }
         }
-        tpl::d('login.tpl');
+        tpl::d('admin/login.tpl');
     }
     public function logout()
     {
