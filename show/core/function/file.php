@@ -225,5 +225,46 @@ Class file{
         file_put_contents(PHPBODY."/sitemap.xml",$tmp);
 
     }
+    /**
+     * 输出图片
+     * @param  [type] $type [description]
+     * @param  [type] $img  [description]
+     * @return [type]       [description]
+     */
+    public static function oimg($type,$img){
+    switch($type) {
+        case IMAGETYPE_JPEG :
+            header('Content-type: image/jpeg');
+            imagejpeg($img);
+            break;
+        case IMAGETYPE_PNG :
+            header('Content-type: image/png');
+            imagepng($img);
+            break;
+        case IMAGETYPE_GIF :
+            header('Content-type: image/gif');
+            imagegif($img);
+            break;
+        default:
+            break;
+    }
+    }
+    /**
+     * 保存为Alpha值的图片
+     * @param string $fileName [description]
+     */
+    public static function imgalpha($fileName='',$dimg){
+        $fileName = $fileName.'.png';
+        imagesavealpha($img, true);
+        imagepng($dimg,$fileName);
+    }
+    /**
+     * 输出alpha的图片
+     */
+    public static function oimgalpha($dimg){
+        imagesavealpha($dimg, true);
+        header('Content-type: image/png');
+        imagepng($dimg);
+    } 
 }
 ?>

@@ -6,8 +6,8 @@
  */
 Class upload
 {
-    protected config = array();
-    public error;
+    protected $config = array();
+    public $error;
     public function __construct($config = array())
     {
         $this->config['size'] = !empty($config['size'])?$config['size']:'10000';
