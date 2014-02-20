@@ -21,7 +21,10 @@ Class db{
     {
        self::conn();
     }
-    
+    public static function factory()
+    {
+        return new db();
+    }
     /*
      * 单例创建
      */
@@ -45,9 +48,12 @@ Class db{
      * 建立查询
      * 语句失败，拋出
      */
-    public function query($sql)
+    public function query($sql='')
     {
-
+        if(empty($sql))
+        {
+            $sql = $this->sql;
+        }
 //        $sql = addslashes($sql);
 //        $sql = self::safe($sql);
         $sqlkey = md5($sql);
@@ -60,6 +66,7 @@ Class db{
         $sql = str_replace($str,$GLOBALS['db']['pre'],$sql);
         $starttime = microtime(true);
         $d = mysql_query($sql) or die("Invalid query: " .$sql.mysql_error());
+        $this->sql = '';
         $endtime = microtime(true);
         $whattime = $endtime - $starttime;
         
@@ -201,7 +208,7 @@ Class db{
     /*
      * 获取一条信息
      */
-    function getone($sql)
+    public function getone($sql='')
     {
         $result = $this->query($sql);
         $this->xdata = mysql_fetch_array($result,MYSQL_ASSOC);
@@ -210,7 +217,7 @@ Class db{
     /*
      * 获取全部信息
      */
-    function getall($sql)
+    public function getall($sql='')
     {
         $data = '';
         $result = $this->query($sql);
@@ -219,5 +226,63 @@ Class db{
             $data[] = $this->xdata;
         }
         return $data;
+    }
+    /**
+     * 拼接SQL
+     * @param  [type] $table [description]
+     * @return [type]        [description]
+     */
+    public function select($table,$field='*')
+    {
+        $this->sql = "select {$field} from {$table} ";
+    }
+    /*
+     * 左链接
+     */
+    public function leftjoin( $table )
+    {
+        $this->sql = $this->sql." leftjoin {$table} ";
+    }
+    /*
+     * join on
+     */
+    public function on($str)
+    {
+       $this->sql = $this->sql." {$str} ";  
+    }
+    /*
+     * 右链接
+     */
+    public function rightjoin($table)
+    {
+      $this->sql = $this->sql." rightjoin {$table} ";
+    }
+    /*
+     * where 
+     */
+    public function where($where)
+    {
+        if(empty($where))
+        {
+            $where = '1';
+        }
+        $this->sql = $this->sql." where {$where} ";
+    }
+    /**
+     * order by
+     * @param  [type] $field [description]
+     * @param  string $de    [description]
+     * @return [type]        [description]
+     */
+    public function order($field,$de = "desc")
+    {
+        $this->sql = $this->sql." orderby {$field} {$de} ";
+    }
+    /*
+     * limit num
+     */
+    public function limit($num='10')
+    {
+        $this->sql = $this->sql." limit {$num} ";
     }
 }

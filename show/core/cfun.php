@@ -9,4 +9,8 @@ function b()
 {
     echo "<br/>";
 }
+function dbug($var)
+{
+	form::sbug($var);
+}
 ?>

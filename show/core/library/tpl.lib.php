@@ -49,17 +49,31 @@ Class tpl{
     /*
      * 渲染
      */
-    public static function d($name){
+    public static function d($file){
         self::init();
-        self::$_instance->tpl->display($name);
+        self::$_instance->tpl->display($file);
     }
     
     /*
      * html fetch
      */
-    public function f()
+    public static function f($file)
     {
-        
+        self::init();
+        $data = self::$_instance->tpl->fetch($file);
+        return $data;
+    }
+    /**
+     * 生成静态文件
+     * @param  [type] $file  [description]
+     * @param  [type] $fpath [description]
+     * @return [type]        [description]
+     */
+    public static function make($file,$fpath)
+    {
+        self::init();
+        $data = self::f($file);
+        file::writefile($fpath,$data);
     }
 }
 ?>

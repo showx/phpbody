@@ -205,5 +205,25 @@ Class file{
         }
         return false;
     }
+    /**
+     * 生成网站地图
+     * @return [type] [description]
+     */
+    public static function sitemap($data)
+    {
+        $tmp = "";
+        foreach($data as $key=>$val)
+        {
+     $tmp .="<url>
+            <loc>{$val['url']}</loc>
+            <lastmod>{$val['time']}</lastmod>
+            <changefreq>hourly</changefreq>
+            <priority>0.9</priority>
+            </url>
+            ";
+        }
+        file_put_contents(PHPBODY."/sitemap.xml",$tmp);
+
+    }
 }
 ?>

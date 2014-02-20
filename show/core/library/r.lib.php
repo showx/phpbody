@@ -31,6 +31,7 @@ Class r{
        $this->get = (object)$this->get;
        $this->post = (object)$this->post;
        $this->req = (object)$this->req;
+       unset($_GET,$_POST);
     }
 
     private function data($at='get',$key,$val)
