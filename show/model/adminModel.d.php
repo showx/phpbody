@@ -1,4 +1,10 @@
 <?php
+if(!defined('BODY')){exit();}
+/**
+* 后台相关
+* Author show
+* copyright phpbody
+*/
 class adminModel{
 	/**
 	 * 是否管理员

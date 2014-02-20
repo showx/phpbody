@@ -1,4 +1,10 @@
 <?php
+if(!defined('BODY')){exit();}
+/**
+* 栏目相关
+* Author show
+* copyright phpbody (www.phpbody.com)
+*/
 class categoryModel{
 	/*
 	*
@@ -18,38 +24,36 @@ class categoryModel{
 	    	}
             $arrkey = array_keys($arr);
             $menu['0'] = $arr['0'];
-
             foreach($arrkey as $key=>$val)
             {
                 if($val==0){continue;}
                 // $tmp = self::getParentid($val);
-                // form::sbug($menu);
                     if(self::searchkey($menu,$val))
                     {   
                         //根，实际没必要判断
                     }else{
-                        echo "==========={$val}======<br/>";
-                        self::fors($menu,$val);
+                        $menu = self::fors($menu,$val,$arr[$val]);
                     }
-
             }
-       
 
     	}
+        $menu = self::menutree($menu);
     	return $menu;
     }
-    public static function fors($arr,$d)
+    
+    public static function fors(&$arr,$d,$data)
     {
-
-        foreach($arr as $key=>$val)
+        foreach($arr as $key=>&$val)
         {
             if(self::searchkey($val,$d))
             {
+                array_push($val[$d],$data);
                 
             }else{
-                self::fors($val,$key);
+                self::fors($val,$d,$data);
             }
         }
+        return $arr;
     }
     public static function searchkey($arr,$key)
     {
@@ -59,7 +63,6 @@ class categoryModel{
             $a = array_key_exists($key,$arr);
             if($a)
             {
-                echo 'ok';
                 return true;
             }else{
                 return false;
@@ -67,6 +70,43 @@ class categoryModel{
         }
         return false;
         
+    }
+    /**
+    * 生成菜单
+    */
+    public function menutree($tree)
+    {
+        $str = '';
+        foreach($tree['0'] as $key=>$val)
+        {
+            $str .= "<li><a href='#'>{$val['name']}</a>";
+            if(isset($val['0']))
+            {
+                $tmp = self::subtree($val['0']);
+                $str .= $tmp;
+            }
+            $str .="</li>";
+        }
+        return $str;
+    }
+    /**
+    * 获取子菜单
+    */
+    private function subtree($tree)
+    {
+        $str = "<ul>";
+        foreach($tree as $key=>$val)
+        {
+            $str .="<li><a href='#'>{$val['name']}</a>";
+            if(isset($val['0']))
+            {
+                $tt = self::subtree($val['0']);
+                $str .= $tt;
+            }
+            $str .="</li>";
+        }
+        $str .= "</ul>";
+        return $str;
     }
     public static function getParentid($id)
     {
@@ -77,12 +117,13 @@ class categoryModel{
         return $result;
 
     }
+    /**
+    * 增加栏目 
+    */
     public static function CategoryAdd($name,$parentid=0)
     {
         global $sdb;
         $sql = "insert into #pre#menu(`parentid`,`name`) values('{$parentid}','{$name}');";
-        echo $sql;
         $return = $sdb->query($sql);
-        var_dump($return);exit();
     }
 }

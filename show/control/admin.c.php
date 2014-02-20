@@ -12,9 +12,8 @@ class admin extends base{
         {
             form::go('admin','login');
         }
-
         tpl::a('name',$_SESSION['username']);
-        tpl::d('admin.tpl');
+        tpl::d('admin/admin.tpl');
     }
     public function login()
     {
@@ -36,5 +35,17 @@ class admin extends base{
     {
         $_SESSION['isadmin'] = $_SESSION['username'] = '';
         form::go('admin','index');
+    }
+    public function info()
+    {
+        phpinfo();
+    }
+    public function adminuser()
+    {
+
+    }
+    public function user()
+    {
+        
     }
 }

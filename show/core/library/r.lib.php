@@ -72,7 +72,7 @@ Class r{
     {
         if(is_array($data))
         {
-            foreach($data as $k => $v)
+            foreach($data as $k => &$v)
             {
                 self::_safe($v);
             }

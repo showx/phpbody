@@ -42,6 +42,7 @@ CREATE TABLE `show_content` (
   `categoryid` int(11) default NULL,
   `tags` varchar(255) default NULL,
   `timestamp` int(11) default NULL,
+  `uptime` int(11) default NULL,
   `listorder` int(11) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -120,7 +121,7 @@ CREATE TABLE `show_links` (
   `url` varchar(255) default NULL,
   `type` varchar(255) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 EOF;
 $data = explode(";", $sql);
 foreach($data as $sql)

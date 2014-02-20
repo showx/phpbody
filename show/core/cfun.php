@@ -13,4 +13,8 @@ function dbug($var)
 {
 	form::sbug($var);
 }
+function go($c,$a)
+{
+	form::go($c,$a);
+}
 ?>

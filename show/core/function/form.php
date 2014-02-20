@@ -16,7 +16,7 @@ Class form{
         $tem = "<div style='background-color:#000000;color:green;width:auto;height:120px;overflow-y:scroll;'><pre>";
         $e = var_export($vararr,true);
         $tem .= $e;
-        $tem .= "</pre></div>";
+        $tem .= "</pre></div><br/>";
         echo $tem;
     }
     /**
