@@ -113,6 +113,14 @@ CREATE TABLE `show_config` (
   `timestamp` int(11) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `show_links`;
+CREATE TABLE `show_links` (
+  `id` int(11) NOT NULL default '0',
+  `title` varchar(255) default NULL,
+  `url` varchar(255) default NULL,
+  `type` varchar(255) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8
 EOF;
 $data = explode(";", $sql);
 foreach($data as $sql)
