@@ -1,6 +1,7 @@
 <?php
+if(!defined('BODY')){exit();}
 /*
- * 上传类
+ * 图片处理类
  * modify show
  * copyright PHPBODY (www.phpbody.com)
  */

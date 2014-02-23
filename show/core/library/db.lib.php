@@ -1,4 +1,5 @@
 <?php
+if(!defined('BODY')){exit();}
 /**
  * 数据库驱动类
  * Author show

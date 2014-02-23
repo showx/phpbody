@@ -1,4 +1,5 @@
 <?php
+if(!defined('BODY')){exit();}
 /*
  * 上传类
  * Author show

@@ -1,4 +1,5 @@
 <?php
+if(!defined('BODY')){exit();}
 /**
 * 路由类
 * Author show

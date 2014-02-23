@@ -4,8 +4,14 @@
     <meta charset="utf-8">
     <title>查看栏目</title>
     <link rel="stylesheet" type="text/css" href="/static/js/treeview/jquery.treeview.css"/>
-    <script type="text/javascript" src="/static/js/jquery-1.7.2.min.js"></script>
-    <script type="text/javascript" src="/static/js/treeview/jquery.treeview.js"></script>
+    <script type="text/javascript" src="/static/jsdev/labjs/LAB.js"></script>
+    <script>
+      $LAB
+      .script("/static/js/jquery-1.7.2.min.js").wait()
+      .script("/static/js/treeview/jquery.treeview.js")
+      .script("/static/pagejs/lab1.js");
+    </script>
+  
   </head>
   <body>
   	<div id="wrapper">
@@ -16,16 +22,10 @@
          <{$menu}>
         </ul>
         <script language="javascript">
-        $(document).ready(function(){
-        $("#navigation").treeview({
-          persist: "location",
-          collapsed: true,
-          unique: true
-        });
-      });
+        
         </script>
   		</div>
-        <{include file="category.add.tpl"}>
+        <{include file="admin/category.add.tpl"}>
   	</div>
   </body>
 </html>

@@ -1,4 +1,5 @@
 <?php
+if(!defined('BODY')){exit();}
 /*
  * session 类
  * Author show

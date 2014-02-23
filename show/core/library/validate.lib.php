@@ -1,4 +1,5 @@
 <?php
+if(!defined('BODY')){exit();}
 /**
 * 验证相关
 * Author show

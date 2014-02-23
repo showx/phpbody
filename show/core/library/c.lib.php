@@ -1,4 +1,5 @@
 <?php
+if(!defined('BODY')){exit();}
 /**
  * cookie 方法
  * 没什么事情，不推荐使用cookie

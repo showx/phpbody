@@ -1,4 +1,5 @@
 <?php
+if(!defined('BODY')){exit();}
 /*
  * 模板引擎
  * Author show
