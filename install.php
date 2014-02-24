@@ -122,6 +122,16 @@ CREATE TABLE `show_links` (
   `type` varchar(255) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `show_rbac`;
+CREATE TABLE `show_rbac` (
+  `id` int(11) NOT NULL DEFAULT '0',
+  `name` varchar(255) DEFAULT NULL,
+  `control` varchar(255) DEFAULT NULL,
+  `action` varchar(255) DEFAULT NULL,
+  `parentct` int(11) DEFAULT NULL,
+  `parentctname` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
 EOF;
 $data = explode(";", $sql);
 foreach($data as $sql)
