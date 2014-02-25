@@ -36,6 +36,24 @@ class admin extends base{
         $_SESSION['isadmin'] = $_SESSION['username'] = '';
         form::go('admin','index');
     }
+    public function group()
+    {
+        $group = adminModel::getGroup();
+        tpl::a("group",$group);
+        tpl::d("admin/group.index.tpl");
+    }
+    public function setting()
+    {
+        global $r;
+
+        tpl::d("admin/group.xian.tpl");
+
+    }
+    public function del()
+    {
+        global $r;
+        $id = $r->get("id");
+    }
     public function info()
     {
         phpinfo();

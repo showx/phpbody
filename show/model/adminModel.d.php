@@ -26,5 +26,19 @@ class adminModel{
 			return false;
 		}
 	}
+	public static function getGroup()
+	{
+		global $sdb;
+		$sql = "select * from #pre#group";
+		$data = $sdb->getall($sql);
+		return $data;
+	}
+	public static function DelGroup($id)
+	{
+		global $sdb;
+		$sdb->query("delete from #pre#group where groupid='{$id}'");
+		$sdb->query("delete from #pre#admin where groupid='{$id}'");
+		return true;
+	}
     
 }

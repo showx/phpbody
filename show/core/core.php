@@ -44,7 +44,7 @@ if(PHP_SAPI!=='cli') //主要用于跑取cron 或 处理数据用
     $GLOBALS['r'] = new r(); 
     global $r,$sdb;
     //route
-    if(!isset($r->get->c))
+    if(!isset($r->req->c))
     {
         $home = new home();
         if(!isset($r->req->a))
