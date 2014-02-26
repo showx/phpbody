@@ -130,6 +130,7 @@ CREATE TABLE `show_rbac` (
   `action` varchar(255) DEFAULT NULL,
   `parentct` int(11) DEFAULT NULL,
   `parentctname` varchar(255) DEFAULT NULL,
+  `notyz` int(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 EOF;

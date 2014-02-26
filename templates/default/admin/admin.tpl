@@ -45,7 +45,16 @@
                 <li><a target="pwrapper" href="?c=admin&a=adminuser">管理后台用户</a></li>
               </ul>
             </li>
-
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-square-o-down"></i>站内更新<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a target="pwrapper" href="?c=update&a=main">首页更新</a></li>
+                <li><a target="pwrapper" href="?c=update&a=category">栏目更新</a></li>
+                <li><a target="pwrapper" href="?c=update&a=content">内容更新</a></li>
+                <li><a target="pwrapper" href="?c=update&a=tags">标签页更新</a></li>
+                <li><a target="pwrapper" href="?c=update&a=sitemap">生成网站地图</a></li>
+              </ul>
+            </li>
           </ul>
 
           <ul class="nav navbar-nav navbar-right navbar-user">

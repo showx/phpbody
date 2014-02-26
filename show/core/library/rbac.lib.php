@@ -9,7 +9,7 @@ Class rbac
 {
 	public static function R()
 	{
-		glboal $sdb;
+		global $sdb;
 		$sql = "select * from #pre#rbac";
 		$result = $sdb->getall($sql);
 
@@ -22,6 +22,29 @@ Class rbac
 	public static function CheckUser($ct,$ac)
 	{
 
+	}
+	/**
+	* 验证
+	*/	
+	public static function Check($ct,$ac='index')
+	{
+		if($_SESSION['isadmin'] !='')
+		{	
+			self::CheckUser($ct,$ac);
+		}
+		global $sdb;
+		$sql = "select control,action,notyz from #pre#rbac where control ='{$ct}' and action='*'"; 
+		$one = $sdb->getone($sql);
+		if($one)
+		{
+			if($one['notyz']!='1')
+			{
+				// throw new Exception("权限不足");exit();
+				die("权限不足");
+			}
+		}else{
+			die("权限不足");
+		}
 	}
 	public static function StrToArr()
 	{
