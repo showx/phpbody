@@ -14,7 +14,15 @@ Class rbac
 		$result = $sdb->getall($sql);
 
 	}
+	/**
+	 * 验证权限
+	 * @param [type] $ct [description]
+	 * @param [type] $ac [description]
+	 */
+	public static function CheckUser($ct,$ac)
+	{
 
+	}
 	public static function StrToArr()
 	{
 
