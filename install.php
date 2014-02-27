@@ -133,6 +133,13 @@ CREATE TABLE `show_rbac` (
   `notyz` int(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `show_module`;
+CREATE TABLE `show_module` (
+  `id` int(11) DEFAULT NULL,
+  `modulename` varchar(255) DEFAULT NULL,
+  `moduledata` text,
+  `timestamp` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 EOF;
 $data = explode(";", $sql);
 foreach($data as $sql)
