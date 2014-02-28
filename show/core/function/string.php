@@ -45,7 +45,7 @@ Class string
         if($a=='all')
         {
             preg_match_all($gui,$data,$return);    
-           
+            return $return;
         }else{
             preg_match($gui,$data,$return);    
         }

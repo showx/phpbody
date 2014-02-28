@@ -50,7 +50,11 @@ Class rbac
 	{
 
 	}
-	
+	/**
+	 * 8421，二进字符转数组
+	 * @param  [type] $str [description]
+	 * @return [type]      [description]
+	 */
 	public static function string2array($str) {
 		$result = array();
 		$_ARR = array(
@@ -77,7 +81,11 @@ Class rbac
 		}
 		return $result;
 	}
-
+	/**
+	 * 按位数组转二进制
+	 * @param  [type] $arr [description]
+	 * @return [type]      [description]
+	 */
 	public static function array2string($arr) {
 		$result = "";
 		if(is_array($arr) && $arr) {

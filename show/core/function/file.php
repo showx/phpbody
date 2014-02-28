@@ -270,7 +270,7 @@ Class file{
     {
         if(is_writable($file))
         {
-            if (!$handle = fopen($filename, 'a')) {  //is_readable
+            if (!$handle = fopen($file, 'a')) {  //is_readable
                  return false;
             }
             if (!fwrite($handle, $data)) {
