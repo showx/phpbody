@@ -58,43 +58,43 @@ Class string
         
     }
 
-	static function  get_charsetconv($convmode,$content) {
+	public static function  get_charsetconv($convmode,$content) {
 		if (!function_exists($convmode)) {
-			include SHOWFUNCTION.'charset_conv.php';
+			include SHOWFUNCTION.'/charset_conv.php';
 		}
 		eval('$content='.$convmode.'($content);');
 		return $content;
 	}
 
-	static function  toutf8($str,$LANGPAK='utf8') {
+	public static function  toutf8($str,$LANGPAK='utf8') {
 		if($LANGPAK=='gbk') {
-			$str=get_charsetconv(g2u,$str);
+			$str=self::get_charsetconv(g2u,$str);
 		}elseif($LANGPAK=='big5') {
-			$str=get_charsetconv(b2u,$str);
+			$str=self::get_charsetconv(b2u,$str);
 		}else{
 			$str=$str;
 		}
 		return $str;
 	}
 
-	static function  togbk($str,$LANGPAK='utf8') {
+	public static function  togbk($str,$LANGPAK='utf8') {
 		if($LANGPAK=='gbk') {
 			$str=$str;
 		}elseif($LANGPAK=='big5') {
-			$str=get_charsetconv(b2g,$str);
+			$str=self::get_charsetconv(b2g,$str);
 		}else{
-			$str=get_charsetconv(u2g,$str);
+			$str=self::get_charsetconv(u2g,$str);
 		}
 		return $str;
 	}
 
-	static function  tobig5($str,$LANGPAK='utf8') {
+	public static function  tobig5($str,$LANGPAK='utf8') {
 		if($LANGPAK=='gbk') {
-			$str=get_charsetconv(g2b,$str);
+			$str=self::get_charsetconv(g2b,$str);
 		}elseif($LANGPAK=='big5') {
 			$str=$str;
 		}else{
-			$str=get_charsetconv(u2b,$str);
+			$str=self::get_charsetconv(u2b,$str);
 		}
 		return $str;
 	}
@@ -103,7 +103,7 @@ Class string
 	 * @param  integer $x [description]
 	 * @return [type]     [description]
 	 */
-	static function  str_rand($x=4){
+	public static function  str_rand($x=4){
 		$str='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 		$string='';
 		for($i=0;$i<$x;$i++) $string.=substr($str,mt_rand(0,strlen($str)-1),1);
@@ -117,7 +117,7 @@ Class string
 	 * @param  integer $in_parent [description]
 	 * @return [type]             [description]
 	 */
-	static function  js_location($url,$time=3000,$in_parent=0){
+	public static function  js_location($url,$time=3000,$in_parent=0){
 		$parent = $in_parent ? 'parent.' : '';
 		return '<script type="text/JavaScript">setTimeout("window.'.$parent.'location=\''.$url.'\';",'.$time.');</script>';
 	}
@@ -126,7 +126,7 @@ Class string
 	 * @param  [type] $arr [description]
 	 * @return [type]      [description]
 	 */
-	static function  get_max_key($arr) {
+	public static function  get_max_key($arr) {
 		$indexarr=array_keys($arr);
 		rsort($indexarr);
 		return $indexarr[0];

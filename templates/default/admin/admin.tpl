@@ -12,7 +12,6 @@
   <body>
     <div id="wrapper">
       <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
             <span class="sr-only">Toggle navigation</span>
@@ -43,6 +42,13 @@
                 <li><a target="pwrapper" href="?c=admin&a=group">管理用户组</a></li>
                 <li><a target="pwrapper" href="?c=admin&a=user">管理用户</a></li>
                 <li><a target="pwrapper" href="?c=admin&a=adminuser">管理后台用户</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-square-o-down"></i>广告管理<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a target="pwrapper" href="?c=ads&a=index">查看广告</a></li>
+                <li><a target="pwrapper" href="?c=ads&a=add">添加广告</a></li>
               </ul>
             </li>
             <li class="dropdown">
