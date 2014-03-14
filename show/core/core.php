@@ -40,6 +40,12 @@ if(PHP_SAPI!=='cli') //主要用于跑取cron 或 处理数据用
     }
     set_exception_handler('exception');
     set_error_handler('exception', E_ALL);
+}else{
+    if(count($argv)>2)
+    {
+        $_GET['c'] = $argv['1'];
+        $_GET['a'] = $argv['2'];
+    }
 }
     $GLOBALS['r'] = new r(); 
     global $r,$sdb;
@@ -53,7 +59,7 @@ if(PHP_SAPI!=='cli') //主要用于跑取cron 或 处理数据用
             $home->index();
         }else{
             $t = $r->req->a;
-            @$home->$t();
+            $home->$t();  //没必要不显示warning
         }
     }else{
         if(!isset($r->get->a))
@@ -61,7 +67,7 @@ if(PHP_SAPI!=='cli') //主要用于跑取cron 或 处理数据用
             $r->get->a = 'index';
         }
         try{
-            @$tmp = new $r->get->c;
+            $tmp = new $r->get->c;
         }catch(Exception $e)
         {
             echo 'no hack';exit();
