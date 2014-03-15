@@ -143,9 +143,9 @@ Class db{
         {
                 if($i==0)
                 {
-                    $tmp .= "{$key} = {$val} ";    
+                    $tmp .= "{$key} = '{$val}' ";    
                 }else{
-                    $tmp .= ",{$key} = {$val} ";
+                    $tmp .= ",{$key} = '{$val}' ";
                 }
                 
                 $i=1;

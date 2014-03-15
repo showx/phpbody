@@ -19,7 +19,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.html">PHPBODY管理后台</a>
+          <a class="navbar-brand" href="#">PHPBODY管理后台</a>
         </div>
 
         <div class="collapse navbar-collapse navbar-ex1-collapse">
@@ -68,6 +68,7 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i><{$name}><b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li><a href="#"><i class="fa fa-gear"></i>设置</a></li>
+                <li><a href="/?c=admin&a=password" target='_blank'><i class="fa fa-gear"></i>修改密码</a></li>
                 <li class="divider"></li>
                 <li><a href="?c=admin&a=logout"><i class="fa fa-power-off"></i> Log Out</a></li>
               </ul>

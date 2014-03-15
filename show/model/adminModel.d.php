@@ -18,13 +18,33 @@ class adminModel{
 		$sql = "select * from #pre#admin where username ='{$user}'";
 		$tmp = $sdb->getone($sql);
 		if($tmp==false){return false;}
-		$password = md5($pass+$tmp['mcrypt']);
+		$password = md5($pass+$tmp['mcrypt']); //加号
 		if($password == $tmp['password'])
 		{
 			return true;
 		}else{
 			return false;
 		}
+	}
+	/**
+	* 修改密码
+	*/
+	public static function UpPassword($password)
+	{
+		global $sdb;
+		$user = $_SESSION["username"];
+		$sql = "select * from #pre#admin where username='{$user}'";
+		$one = $sdb->getone($sql);
+
+		if($one)
+		{
+			
+			$pass['password'] = md5($password+$one['mcrypt']);
+			$query = $sdb->update("show_admin",$pass," where username='{$user}' ");
+			return true;
+		}
+		return false;
+		
 	}
 	public static function getGroup()
 	{

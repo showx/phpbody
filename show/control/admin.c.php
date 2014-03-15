@@ -15,6 +15,25 @@ class admin extends base{
         tpl::a('name',$_SESSION['username']);
         tpl::d('admin/admin.tpl');
     }
+    public function password()
+    {
+        global $r;
+        $password = $r->post("password");
+        if($password)
+        {
+            $query = adminModel::UpPassword($password);
+            if($query)
+            {
+                echo '修改成功';
+            }else{
+                echo '修改失败';
+            }
+        } 
+        echo form::getFormTop("/?c=admin&a=password","post");
+        echo form::input("text","password");
+        echo form::input("submit","sub","modify");
+        echo '</form>';
+    }
     public function login()
     {
         global $r;

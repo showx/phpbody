@@ -52,7 +52,7 @@ if(PHP_SAPI!=='cli') //主要用于跑取cron 或 处理数据用
     //route
     if(!isset($r->req->c))
     {
-        rbac::Check('home','index');
+        // rbac::Check('home','index');
         $home = new home();
         if(!isset($r->req->a))
         {
@@ -73,7 +73,7 @@ if(PHP_SAPI!=='cli') //主要用于跑取cron 或 处理数据用
             echo 'no hack';exit();
         }
         $a = $r->get->a;
-        rbac::Check($r->get->c,$a);
+        // rbac::Check($r->get->c,$a);
         $tmp->$a();
     }
 

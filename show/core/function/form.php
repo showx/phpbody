@@ -45,6 +45,15 @@ Class form{
         $pages .= "</ul>";
         return $pages;
     }
+    public static function getFormTop($action,$method='get')
+    {
+        return "<form action='{$action}' method='{$method}' >";
+    }
+    public static function input($type='text',$name='input1',$value='')
+    {
+        return "<input type='{$type}' name='{$name}' value='{$value}' />";
+    }
+    
     /**
      * 获取网页头部
      * @return [type] [description]
