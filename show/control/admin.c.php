@@ -6,6 +6,20 @@ if(!defined('BODY')){exit();}
 * copyright phpbody (www.phpbody.com)
 */
 class admin extends base{
+    public function __construct()  //覆盖了base construct
+    {
+        global $sdb,$r;
+        $this->route = $r;
+        $this->db = $sdb;
+        if($this->route->get('a') !=='login')
+        {
+            if($_SESSION['isadmin'] =='')
+            {
+                echo '<a href="/?c=admin&a=login">请登录</a>';exit();
+            }
+        }
+        
+    }
     public function index()
     {
         if($_SESSION['isadmin'] =='')

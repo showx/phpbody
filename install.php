@@ -52,6 +52,7 @@ CREATE TABLE `show_session` (
   `id` varchar(255) NOT NULL default '',
   `data` varchar(255) default NULL,
   `lastaccess` varchar(255) default NULL,
+  `isonline` varchar(30) default NULL COMMENT '防止同一账号同时登录',
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 DROP TABLE IF EXISTS `show_subsite`;
