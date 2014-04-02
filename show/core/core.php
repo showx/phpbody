@@ -31,7 +31,7 @@ if(PHP_SAPI!=='cli') //主要用于跑取cron 或 处理数据用
     /**
      * 异常处理
      */
-    function exception($e)
+    function exception($e)  //assert_options assert
     {
         if(is_object($e))
         {
