@@ -5,7 +5,7 @@ if(!defined('BODY')){exit();}
 * Author show
 * copyright phpbody (www.phpbody.com)
 */
-class categoryModel{
+class categoryModel extends base{
 	/*
 	*
 	* 获取菜单
@@ -40,7 +40,20 @@ class categoryModel{
         $menu = self::menutree($menu);
     	return $menu;
     }
-    
+    public static function getCate($id)
+	{
+        global $sdb;
+        if($id=='0')
+        {
+            $sql = "select * from #pre#menu where id!='1'";
+        }else{
+            $sql = "select * from #pre#menu where id='{$id}'";
+        }
+        
+        $result = $sdb->getall($sql);
+        return $result;
+	}
+
     public static function fors(&$arr,$d,$data)
     {
         foreach($arr as $key=>&$val)

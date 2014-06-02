@@ -10,8 +10,8 @@ Class tpl{
     public  $tpl;
     private $data; 
     public static $_instance;
-    public static function init() {
-        //$this->lib = templatelib;
+    public  function init() {
+        //$thistatics->lib = templatelib;
         self::getInstance();
     }
     /**
@@ -27,10 +27,11 @@ Class tpl{
      */
     public static function getInstance(){
         if(!(self::$_instance instanceof self)){
+            global $allow;
             self::$_instance = new self;
 
             self::$_instance->tpl = new Smarty;
-            self::$_instance->tpl->template_dir = template_dir;
+            self::$_instance->tpl->template_dir = template_dir.$allow;
             self::$_instance->tpl->compile_dir = compile_dir;
             self::$_instance->tpl->config_dir = config_dir;
             self::$_instance->tpl->cache_dir = cache_dir;

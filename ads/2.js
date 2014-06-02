@@ -1,0 +1,1 @@
+document.write("alert(\'ok\');//aa");

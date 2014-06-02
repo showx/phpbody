@@ -49,7 +49,7 @@ Class db{
      * 建立查询
      * 语句失败，拋出
      */
-    public function query($sql='')
+    public function query($sql='',$set='')
     {
         if(empty($sql))
         {
@@ -59,7 +59,7 @@ Class db{
 //        $sql = self::safe($sql);
         $sqlkey = md5($sql);
         $d = self::cache($sqlkey);
-        if($d)
+        if($d && empty($set))
         {
             return $d;
         }
@@ -126,6 +126,13 @@ Class db{
         $values = implode("','",$valarr);
         $sql = "{$d} into {$table}(`{$keys}`) values('{$values}')";
         $tmp = self::query($sql);
+        return $tmp;
+    }
+    public function insert2($table,$data)
+    {
+        $keyarr = array_keys($data);
+        $values = array_values($data);
+        $tmp = self::insert($table,$keyarr,$values);
         return $tmp;
     }
     /**

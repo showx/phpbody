@@ -1,5 +1,5 @@
 <?php
-class indexModel{
+class indexModel extends base{
     public static function getResult()
     {
     	global $sdb;

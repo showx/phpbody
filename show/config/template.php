@@ -5,7 +5,7 @@
 
 define("TEMPLATES","default");
 
-define("templatelib",PHPBODY."/show/display/libs");
+define("templatelib",PHPBODY."/show/templatelibs");
 
 define("template_dir",PHPBODY."/templates/".TEMPLATES);
 

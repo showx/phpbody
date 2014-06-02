@@ -20,6 +20,31 @@ Class string
 		$strings=explode($getend,$strings);
 		return $strings[0];
 	}
+   /**
+    * 获取验证码
+    * @param  [type] $string [description]
+    * @return [type]         [description]
+    */
+   public static function yanzheng($string)
+   {
+//session_start();
+   	 include(SHOWFUNCTION.'/kcaptcha/kcaptcha.php');
+   	 $captcha = new KCAPTCHA();
+   	 $_SESSION['captcha_keystring'] = $captcha->getKeyString();
+   }
+   /**
+    * 验证是否正确
+    * @return [type] [description]
+    */
+   public static function yzm($string)
+   {
+// session_start();
+   	if(isset($_SESSION['captcha_keystring']) && $_SESSION['captcha_keystring'] === $string){
+		return true;
+	}else{
+		return false;
+	}
+   }
   /**
    * 判断是否utf8编码
    * @param  [type]  $word [description]
@@ -32,6 +57,15 @@ Class string
 	  return false;
 	  }
   }
+  	/**
+    * utf8中文截取
+    * 这里不使用mbstring扩展
+    * @return string
+    */
+    public static function utf8_substr($str, $slen, $startdd=0)
+    {
+        return mb_substr($str , $startdd , $slen , 'UTF-8'); //mb_strcut
+    }
 
     /**
      * 正则辅助函数
@@ -58,7 +92,7 @@ Class string
         
     }
 
-	public static function  get_charsetconv($convmode,$content) {
+	static function  get_charsetconv($convmode,$content) {
 		if (!function_exists($convmode)) {
 			include SHOWFUNCTION.'/charset_conv.php';
 		}
@@ -70,31 +104,31 @@ Class string
 		if($LANGPAK=='gbk') {
 			$str=self::get_charsetconv(g2u,$str);
 		}elseif($LANGPAK=='big5') {
-			$str=self::get_charsetconv(b2u,$str);
+			$str=get_charsetconv(b2u,$str);
 		}else{
 			$str=$str;
 		}
 		return $str;
 	}
 
-	public static function  togbk($str,$LANGPAK='utf8') {
+	static function  togbk($str,$LANGPAK='utf8') {
 		if($LANGPAK=='gbk') {
 			$str=$str;
 		}elseif($LANGPAK=='big5') {
-			$str=self::get_charsetconv(b2g,$str);
+			$str=get_charsetconv(b2g,$str);
 		}else{
-			$str=self::get_charsetconv(u2g,$str);
+			$str=get_charsetconv(u2g,$str);
 		}
 		return $str;
 	}
 
-	public static function  tobig5($str,$LANGPAK='utf8') {
+	static function  tobig5($str,$LANGPAK='utf8') {
 		if($LANGPAK=='gbk') {
-			$str=self::get_charsetconv(g2b,$str);
+			$str=get_charsetconv(g2b,$str);
 		}elseif($LANGPAK=='big5') {
 			$str=$str;
 		}else{
-			$str=self::get_charsetconv(u2b,$str);
+			$str=get_charsetconv(u2b,$str);
 		}
 		return $str;
 	}
@@ -103,7 +137,7 @@ Class string
 	 * @param  integer $x [description]
 	 * @return [type]     [description]
 	 */
-	public static function  str_rand($x=4){
+	static function  str_rand($x=4){
 		$str='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 		$string='';
 		for($i=0;$i<$x;$i++) $string.=substr($str,mt_rand(0,strlen($str)-1),1);
@@ -117,7 +151,7 @@ Class string
 	 * @param  integer $in_parent [description]
 	 * @return [type]             [description]
 	 */
-	public static function  js_location($url,$time=3000,$in_parent=0){
+	static function  js_location($url,$time=3000,$in_parent=0){
 		$parent = $in_parent ? 'parent.' : '';
 		return '<script type="text/JavaScript">setTimeout("window.'.$parent.'location=\''.$url.'\';",'.$time.');</script>';
 	}
@@ -126,7 +160,7 @@ Class string
 	 * @param  [type] $arr [description]
 	 * @return [type]      [description]
 	 */
-	public static function  get_max_key($arr) {
+	static function  get_max_key($arr) {
 		$indexarr=array_keys($arr);
 		rsort($indexarr);
 		return $indexarr[0];

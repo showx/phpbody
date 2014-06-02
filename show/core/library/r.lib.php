@@ -9,8 +9,12 @@ Class r{
     public $get;
     public $post;
     public $req;
+    public $url = array("a","id","run"); //"c",
+    public $surl = array("c","a","id","swit","run"); //有control的使用
     public function __construct()
     {
+        //极路由，超伪静态
+        //$_SERVER['QUERY_STRING'];
         // if($_SERVER['REQUEST_METHOD']=='GET')  //容易造成post和get只能其中一个
         // {
             foreach($_GET as $key =>$val)
@@ -29,10 +33,43 @@ Class r{
        self::_safe($this->get);
        self::_safe($this->post);
        self::_safe($this->req);
+       //$_SERVER['PATH_INFO'];  //部分服务器不支持
+       if(isset($this->get['r']))
+       {
+         $tmp = explode("/",$this->get['r']);
+         $count = count($tmp)-1;
+         for($i=0;$i<=$count;$i++)
+         {
+            if(isset($tmp[$i]))
+            {
+                $s = $this->url[$i];
+                // $this->get->{$s} = $tmp[$i];
+                $this->get[$s] = $tmp[$i];
+                $this->req[$s] = $tmp[$i];
+            }
+            
+         }
+       }
+       if(isset($this->get['s']))  //还是需要一级使用，不放在r上了，但多了个rewrite
+       {
+         $tmp = explode("/",$this->get['s']);
+         $count = count($tmp)-1;
+         for($i=0;$i<=$count;$i++)
+         {
+            if(isset($tmp[$i]))
+            {
+                $s = $this->url[$i];
+                // $this->get->{$s} = $tmp[$i];
+                $this->get[$s] = $tmp[$i];
+                $this->req[$s] = $tmp[$i];
+            }
+         }
+       }
        $this->get = (object)$this->get;
        $this->post = (object)$this->post;
        $this->req = (object)$this->req;
        unset($_GET,$_POST);
+
     }
 
     private function data($at='get',$key,$val)

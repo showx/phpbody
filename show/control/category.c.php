@@ -6,24 +6,26 @@ if(!defined('BODY')){exit();}
 * copyright phpbody (www.phpbody.com)
 */
 Class category extends base{
+    
     public function index()
     {
-    	global $r;
-    	$menu = categoryModel::getMenu();
-    	tpl::a("menu",$menu);
-    	tpl::a("c",$r->get("c",""));
-    	tpl::a("a",$r->get("a",""));
-        tpl::d("admin/category.index.tpl");
+    	self::cate();
     }
-    public function add()
+    
+    public function cate()
     {
-    	global $r;
-    	$parentid = $r->post("parentid",0);
-    	$name = $r->post("name",'');
-    	if(!empty($name))
-    	{
-    		categoryModel::CategoryAdd($name,$parentid);
-    		form::go('category','index');
-    	}
+        global $r;
+        $id = $r->get("id","");
+        $page = $r->get("run",'1');
+        if($id)
+        {
+            $count = contentModel::getCount($id);
+            $pagediv = form::getPage($page,$count,30,'/r/cate/'.$id,'/');//'?c=category&a=cate&id='.$id
+            $result = contentModel::getPdata($id,$page,30);
+            tpl::a("cid",$id);
+            tpl::a("result",$result);
+            tpl::a("pagediv",$pagediv);
+            tpl::d("list.tpl");
+        }
     }
 }

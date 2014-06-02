@@ -5,7 +5,7 @@ if(!defined('BODY')){exit();}
 * Author show
 * copyright phpbody
 */
-class adminModel{
+class adminModel extends base{
 	/**
 	 * 是否管理员
 	 * @param  [type] $user [description]
@@ -18,7 +18,7 @@ class adminModel{
 		$sql = "select * from #pre#admin where username ='{$user}'";
 		$tmp = $sdb->getone($sql);
 		if($tmp==false){return false;}
-		$password = md5($pass+$tmp['mcrypt']); //加号
+		$password = md5($pass+$tmp['mcrypt']);
 		if($password == $tmp['password'])
 		{
 			return true;
@@ -26,9 +26,6 @@ class adminModel{
 			return false;
 		}
 	}
-	/**
-	* 修改密码
-	*/
 	public static function UpPassword($password)
 	{
 		global $sdb;

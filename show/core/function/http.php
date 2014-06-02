@@ -24,6 +24,55 @@ Class http{
         $header = curl_exec($ch);
         return $header;
     }
+    /*
+     * http get函数
+     * @parem $url
+     * @parem $$timeout=30
+     * @parem $referer_url=''
+     */
+    public static function http_get($url, $timeout=30, $referer_url='')
+    {
+        $startt = time();
+        if (function_exists('curl_init'))
+        {
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+            if( $referer_url != '' )  curl_setopt($ch, CURLOPT_REFERER, $referer_url);
+            curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 5.2; zh-CN; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13');
+            $result = curl_exec($ch);
+            $errno  = curl_errno($ch);
+            curl_close($ch);
+            return $result;
+        }
+        else
+        {
+            $Referer = ($referer_url=='' ?  '' : "Referer:{$referer_url}\r\n");
+            $context =
+            array('http' =>
+                array('method' => 'GET',
+                  'header' => 'User-Agent:'.'Mozilla/5.0 (Windows; U; Windows NT 5.2; zh-CN; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13'."\r\n".$Referer
+                )
+            );
+            $contextid = stream_context_create($context);
+            $sock = fopen($url, 'r', false, $contextid);
+            stream_set_timeout($sock, $timeout);
+            if($sock)
+            {
+                $result = '';
+                while (!feof($sock)) {
+                    //$result .= stream_get_line($sock, 10240, "\n");
+                    $result .= fgets($sock, 4096);
+                    if( time() - $startt > $timeout ) {
+                        return '';
+                    }
+                }
+                fclose($sock);
+            }
+        }
+        return $result;
+    }
     /**
      * php的header相关操作
      * @param  string $type [description]
@@ -138,7 +187,7 @@ Class http{
       $ip2num = 0;
       $ipAddr1 ="";
       $ipAddr2 ="";
-      $dat_path = './ip/qqwry.dat';        
+      $dat_path = SHOWFUNCTION.'/ip/qqwry.dat';        
       if(!preg_match("/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/", $ip)) { 
         return 'IP Address Error'; 
       }  

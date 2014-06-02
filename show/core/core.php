@@ -31,7 +31,7 @@ if(PHP_SAPI!=='cli') //主要用于跑取cron 或 处理数据用
     /**
      * 异常处理
      */
-    function exception($e)  //assert_options assert
+    function exception($e)
     {
         if(is_object($e))
         {
@@ -49,8 +49,14 @@ if(PHP_SAPI!=='cli') //主要用于跑取cron 或 处理数据用
 }
     $GLOBALS['r'] = new r(); 
     global $r,$sdb;
+    if(!empty($r->req->allow))
+    {
+        $GLOBALS['allow'] = "/".$r->req->allow;
+    }else{
+        $GLOBALS['allow'] = '';
+    }
     //route
-    if(!isset($r->req->c))
+    if(!isset($r->req->c)) //这部分有需要封闭到r去么？
     {
         // rbac::Check('home','index');
         $home = new home();
@@ -59,7 +65,7 @@ if(PHP_SAPI!=='cli') //主要用于跑取cron 或 处理数据用
             $home->index();
         }else{
             $t = $r->req->a;
-            $home->$t();  //没必要不显示warning
+            $home->$t();
         }
     }else{
         if(!isset($r->get->a))

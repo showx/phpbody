@@ -25,7 +25,7 @@
         
         </script>
   		</div>
-        <{include file="admin/category.add.tpl"}>
+        <{include file="category.add.tpl"}>
   	</div>
   </body>
 </html>

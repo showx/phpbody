@@ -342,5 +342,36 @@ Class file{
         header('Content-type: image/png');
         imagepng($dimg);
     } 
+    public static function saeup($url,$domain='8')
+    {
+        $s = new SaeStorage();
+        $f = new SaeFetchurl();
+        // $url = "http://t.sina.com.cn";
+        $a = pathinfo($url, PATHINFO_EXTENSION);
+        if($a=='')
+        {
+            $name = md5($url).".txt";
+        }else{
+            $name = basename($url);
+        }
+        $content = $f->fetch($url);
+        if($f->errno() == 0)  
+        {
+        //SAE_TMP_PATH
+        //$s->upload( 'example' , 'test.txt' , 'http://t.sina.com.cn' );
+        $s->write($domain,$name,$content);
+            if($s->errno() == 0 ) 
+            {
+                // $return = $s->read( $domain , $name) ;
+                $return = $s->getUrl($domain,$name);
+                return $return;
+            }else{
+                return '';
+            }
+
+        }else{
+            return $f->errmsg();
+        }
+    }
 }
 ?>

@@ -141,6 +141,15 @@ CREATE TABLE `show_module` (
   `moduledata` text,
   `timestamp` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `show_ads`;
+CREATE TABLE `show_ads` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL,
+  `subtitle` varchar(255) DEFAULT NULL,
+  `content` text,
+  `timestamp` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 EOF;
 $data = explode(";", $sql);
 foreach($data as $sql)

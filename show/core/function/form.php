@@ -21,27 +21,80 @@ Class form{
     }
     /**
      * 获取分页
-     * @param  [type] $page  [description]
-     * @param  [type] $count [description]
-     * @param  [type] $paged [description]
+     * @param  [type] $page  第几页
+     * @param  [type] $count 总数量
+     * @param  [type] $paged 每页多少数量
      * @param  string $url   [description]
      * @return [type]        [description]
      */
-    public static function getPage($page,$count,$paged,$url='/')
+    public static function getPage($page,$count,$paged,$url='/',$dx = true)
     {
         if(empty($count) || $count=='0'){return '';}
-        $ye = ceil($count/$paged);
+        $ye = ceil($count/$paged);  //总页数
         $pages = "<ul class='page'>";
-        for($i=1;$i<=$ye;$i++)
+
+        // for($i=1;$i<=$ye;$i++)
+        // {
+        //     if($i==$page)
+        //     {
+        //         $current = "class='current'";
+        //     }else{
+        //         $current = "";
+        //     }
+        //     $pages .= "<li ><a {$current} href='{$url}/{$i}'>".$i."</a></li>"; //&page=
+        // }
+
+        $left = $page - 3;
+        $right = $page + 3;
+        $t ='';
+        if($page!=1)
         {
-            if($i==$page)
+            $pages .= "<li><a href='{$url}/1'>第一页</a></li>";
+        }
+        for($i=$left;$i<=$page;$i++)
+        {
+            if($i<=0)
+            {
+                continue;
+            }
+            if(empty($t) && $i<$page)
+            {
+                $t = 's';
+                $pages .= "<li><a href='{$url}/{$i}'>上一页</a></li>";
+            }
+            if($page==$i)
             {
                 $current = "class='current'";
             }else{
                 $current = "";
             }
-            $pages .= "<li {$current}><a href='{$url}&page={$i}'>".$i."</a></li>";
+            $pages .= "<li ><a {$current} href='{$url}/{$i}'>".$i."</a></li>"; //&page=
         }
+        $x = $page+1;
+        for($i=$x;$i<=$right;$i++)
+        {
+            if($i<=$ye)
+            {
+                if($page==$i)
+                {
+                    $current = "class='current'";
+                }else{
+                    $current = "";
+                }
+                $pages .= "<li ><a {$current} href='{$url}/{$i}'>".$i."</a></li>"; //&page=
+            }
+            
+        }
+        
+        if($page!=$ye && $page<$ye)
+        {
+            $pages .= "<li ><a href='{$url}/{$x}'>下一页</a></li>"; //&page=
+        }
+        if($page!=$ye)
+        {
+            $pages .= "<li><a href='{$url}/{$ye}'>末页</a></li>";
+        }
+
         $pages .= "</ul>";
         return $pages;
     }
@@ -53,7 +106,6 @@ Class form{
     {
         return "<input type='{$type}' name='{$name}' value='{$value}' />";
     }
-    
     /**
      * 获取网页头部
      * @return [type] [description]
